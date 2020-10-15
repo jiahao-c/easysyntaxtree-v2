@@ -10,6 +10,7 @@ import {
   QuestionCircleOutlined
 } from "@ant-design/icons";
 //import { TreeNode } from "../Types/TreeTypes";
+import { actions } from "./Types/TreeTypes";
 import "antd/dist/antd.css";
 
 interface ToolBarProps {
@@ -40,18 +41,24 @@ export default function ToolBar({
       <ButtonStyled icon={<QuestionCircleOutlined />}>Help</ButtonStyled>
       <ButtonStyled
         type="primary"
-        onClick={() => dispatch({ type: "reset-sample" })}
+        onClick={() => dispatch({ type: actions.RESET_BASIC })}
       >
-        Example Tree
+        Template: Basic Tree
       </ButtonStyled>
       <ButtonStyled
         type="primary"
-        onClick={() => dispatch({ type: "reset-blank" })}
+        onClick={() => dispatch({ type: actions.RESET_DP })}
       >
-        Blank Tree
+        Template: Tree with DP
       </ButtonStyled>
       <ButtonStyled
-        onClick={() => dispatch({ type: "undo" })}
+        type="primary"
+        onClick={() => dispatch({ type: actions.RESET_BLANK })}
+      >
+        Template: Blank Tree
+      </ButtonStyled>
+      <ButtonStyled
+        onClick={() => dispatch({ type: actions.UNDO })}
         disabled={!canUndo}
         type="primary"
         icon={<UndoOutlined />}
@@ -60,7 +67,7 @@ export default function ToolBar({
       </ButtonStyled>
       <ButtonStyled
         disabled={!canRedo}
-        onClick={() => dispatch({ type: "redo" })}
+        onClick={() => dispatch({ type: actions.REDO })}
         type="primary"
         icon={<RedoOutlined />}
       >
@@ -75,7 +82,7 @@ export default function ToolBar({
       <Form
         form={form}
         onFinish={(val: any) => {
-          dispatch({ type: "finish-edit", newText: val.newText });
+          dispatch({ type: actions.FINISH_EDIT, newText: val.newText });
           form.setFieldsValue({ newText: "" });
         }}
       >

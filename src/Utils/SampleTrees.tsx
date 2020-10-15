@@ -26,7 +26,14 @@ export const sampleTree: TreeNode = Node(
 export const sampleTree2: TreeNode = Node(
   "TP",
   Node("DP", Node("D'", Node("D"), Node("NP", Node("N", Node("We"))))),
-  Node("T'")
+  Node(
+    "T'",
+    Node("T", Node("should")),
+    Node(
+      "VP",
+      Node("V'", Node("V'", Node("V'", Node("V", Node("worry")))), Node("PP"))
+    )
+  )
 );
 
 export const sampleTreeWithID = produce(sampleTree, (draft) => {

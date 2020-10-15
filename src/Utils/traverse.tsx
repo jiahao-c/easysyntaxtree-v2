@@ -1,5 +1,5 @@
 import { TreeNode } from "../Types/TreeTypes";
-
+import produce from "immer";
 export function genID(tree: TreeNode) {
   let id = 0;
   function traverse(node: TreeNode) {
@@ -9,7 +9,7 @@ export function genID(tree: TreeNode) {
   traverse(tree);
 }
 
-export function renameNode(
+function renameNode_Mutable(
   tree: TreeNode,
   idToModify: number,
   newName: string
@@ -24,4 +24,38 @@ export function renameNode(
     }
   }
   traverse(tree);
+}
+
+export function renameNode(
+  tree: TreeNode,
+  idToModify: number,
+  newName: string
+) {
+  return produce(tree, (draft) =>
+    renameNode_Mutable(draft, idToModify, newName)
+  );
+}
+
+function addNewChild_Mutable(tree: TreeNode, idToModify: number) {
+  function traverse(node: TreeNode) {
+    if (node.id === idToModify) {
+      //use Number.MAX_SAFE_INTEGER for temporary id, avoid id conflit
+      node.children.push({
+        name: "X",
+        children: [],
+        id: Number.MAX_SAFE_INTEGER
+      });
+      //re-generate id to ensure uniqueness
+      genID(tree);
+      return;
+    }
+    for (let child of node.children) {
+      traverse(child);
+    }
+  }
+  traverse(tree);
+}
+
+export function addNewChild(tree: TreeNode, idToModify: number) {
+  return produce(tree, (draft) => addNewChild_Mutable(draft, idToModify));
 }

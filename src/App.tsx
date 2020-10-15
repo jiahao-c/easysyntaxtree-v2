@@ -4,64 +4,58 @@ import { useState, useEffect, useReducer } from "react";
 import SyntaxTree from "./SyntaxTree";
 import ToolBar from "./ToolBar";
 import Sliders from "./Components/Sliders";
-import { TreeNode } from "./Types/TreeTypes";
+import { TreeNode, StateType, ActionType, actions } from "./Types/TreeTypes";
 import {
   sampleTreeWithID,
   blankTreeWithID,
   sampleTree2WithID
 } from "./Utils/SampleTrees";
 import { HierarchyPointNode } from "d3-hierarchy";
-import { renameNode } from "./Utils/traverse";
+import { renameNode, addNewChild } from "./Utils/traverse";
 import { Form } from "antd";
-import produce from "immer";
 import "antd/dist/antd.css";
 
-type ActionType =
-  | { type: "start-edit"; node: HierarchyPointNode<TreeNode> }
-  | { type: "background-click" }
-  | { type: "finish-edit"; newText: string }
-  | { type: "reset-sample" }
-  | { type: "reset-blank" }
-  | { type: "undo" }
-  | { type: "redo" };
-type StateType = {
-  tree: TreeNode;
-  operatingNode: HierarchyPointNode<TreeNode> | null;
-  inputAvailable: boolean;
-  past: TreeNode[];
-  future: TreeNode[];
-};
-
-//change case names to CONST
 function reducer(state: StateType, action: ActionType): StateType {
   switch (action.type) {
-    case "start-edit":
+    case actions.START_EDIT:
       return { ...state, operatingNode: action.node, inputAvailable: true };
-    case "background-click":
+    case actions.BG_CLICK:
       return { ...state, operatingNode: null, inputAvailable: false };
-    case "finish-edit":
-      const newTree = produce(state.tree, (draft) => {
-        renameNode(draft, state.operatingNode!.data.id, action.newText);
-      });
+    case actions.FINISH_EDIT:
       return {
         ...state,
         past: [...state.past, state.tree],
         future: [],
         inputAvailable: false,
-        tree: newTree
+        tree: renameNode(
+          state.tree,
+          state.operatingNode!.data.id,
+          action.newText
+        )
       };
-    case "reset-sample":
+    case actions.UNDO:
+      return {
+        ...state,
+        future: [...state.future, state.tree],
+        tree: state.past.pop()!
+      };
+    case actions.REDO:
+      return {
+        ...state,
+        past: [...state.past, state.tree],
+        tree: state.future.pop()!
+      };
+    case actions.NEW_CHILD:
+      return {
+        ...state,
+        tree: addNewChild(state.tree, action.node.data.id)
+      };
+    case actions.RESET_BLANK:
       return state; //do nothing for now
-    case "reset-blank":
+    case actions.RESET_BASIC:
       return state; //do nothing for now
-    case "undo":
-      const lastTree = state.past.pop();
-      state.future.push(state.tree);
-      return { ...state, tree: lastTree! };
-    case "redo":
-      const nextTree = state.future.pop();
-      state.past.push(state.tree);
-      return { ...state, tree: nextTree! };
+    case actions.RESET_DP:
+      return state; //do nothing for now
     default:
       return state;
   }

@@ -6,6 +6,7 @@ import { hierarchy, Tree } from "@visx/hierarchy";
 import { LinkVerticalLine } from "@visx/shape";
 import { TreeNode } from "./Types/TreeTypes";
 import { HierarchyPointNode } from "d3-hierarchy";
+import { ActionType, actions } from "./Types/TreeTypes";
 
 const margin = { top: 50, left: 30, right: 30, bottom: 70 };
 
@@ -30,7 +31,7 @@ export default function SyntaxTree({
     <svg
       width={width}
       height={height}
-      onClick={() => dispatch({ type: "background-click" })}
+      onClick={() => dispatch({ type: actions.BG_CLICK })}
     >
       <Tree<TreeNode> root={data} size={[xMax, yMax]}>
         {(tree) => (
@@ -76,7 +77,14 @@ export default function SyntaxTree({
                         : "black"
                     }
                     onDoubleClick={(e) => {
-                      dispatch({ type: "start-edit", node: node });
+                      console.log("on double click");
+                      dispatch({ type: actions.START_EDIT, node: node });
+                      e.stopPropagation();
+                    }}
+                    onContextMenu={(e) => {
+                      e.preventDefault();
+                      console.log("on right click");
+                      dispatch({ type: actions.NEW_CHILD, node: node });
                       e.stopPropagation();
                     }}
                     // onMouseOver={() => {
