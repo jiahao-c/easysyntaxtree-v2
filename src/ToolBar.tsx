@@ -16,6 +16,8 @@ interface ToolBarProps {
   isInputAvailable: boolean;
   dispatch: any;
   form: any;
+  canUndo: boolean;
+  canRedo: boolean;
 }
 
 const ButtonStyled = styled(Button)`
@@ -25,7 +27,9 @@ const ButtonStyled = styled(Button)`
 export default function ToolBar({
   isInputAvailable,
   dispatch,
-  form
+  form,
+  canUndo,
+  canRedo
 }: ToolBarProps) {
   return (
     <div
@@ -46,10 +50,20 @@ export default function ToolBar({
       >
         Blank Tree
       </ButtonStyled>
-      <ButtonStyled type="primary" icon={<UndoOutlined />}>
+      <ButtonStyled
+        onClick={() => dispatch({ type: "undo" })}
+        disabled={!canUndo}
+        type="primary"
+        icon={<UndoOutlined />}
+      >
         Undo
       </ButtonStyled>
-      <ButtonStyled type="primary" icon={<RedoOutlined />}>
+      <ButtonStyled
+        disabled={!canRedo}
+        onClick={() => dispatch({ type: "redo" })}
+        type="primary"
+        icon={<RedoOutlined />}
+      >
         Redo
       </ButtonStyled>
       <ButtonStyled icon={<DeleteOutlined />} type="primary">

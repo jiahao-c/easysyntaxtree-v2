@@ -23,7 +23,17 @@ export const sampleTree: TreeNode = Node(
   )
 );
 
+export const sampleTree2: TreeNode = Node(
+  "TP",
+  Node("DP", Node("D'", Node("D"), Node("NP", Node("N", Node("We"))))),
+  Node("T'")
+);
+
 export const sampleTreeWithID = produce(sampleTree, (draft) => {
+  genID(draft);
+});
+
+export const sampleTree2WithID = produce(sampleTree2, (draft) => {
   genID(draft);
 });
 
