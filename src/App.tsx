@@ -53,11 +53,11 @@ function reducer(state: StateType, action: ActionType): StateType {
         tree: addNewChild(state.tree, action.node.data.id)
       };
     case actions.RESET_BLANK:
-      return state; //do nothing for now
+      return { ...state, tree: blankTreeWithID };
     case actions.RESET_BASIC:
-      return state; //do nothing for now
+      return { ...state, tree: sampleTreeWithID };
     case actions.RESET_DP:
-      return state; //do nothing for now
+      return { ...state, tree: sampleTree2WithID };
     default:
       return state;
   }
@@ -71,7 +71,7 @@ export default function App() {
   const [form] = Form.useForm();
 
   const [state, dispatch] = useReducer(reducer, {
-    tree: sampleTree2WithID,
+    tree: sampleTreeWithID,
     operatingNode: null,
     inputAvailable: false,
     past: [],

@@ -25,8 +25,8 @@ export default function Sliders(props: SliderProps) {
         max={1000}
         onAfterChange={props.setHeight}
       />
-      Angle Control:
-      <Slider
+      {/*Angle Control:
+        <Slider
         defaultValue={24}
         min={-24}
         max={72}
@@ -38,7 +38,7 @@ export default function Sliders(props: SliderProps) {
         min={-12}
         max={24}
         onAfterChange={props.setLineOffset}
-      />
+      /> */}
     </div>
   );
 }
