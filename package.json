@@ -9,6 +9,7 @@
     "@emotion/core": "10.0.35",
     "@emotion/styled": "10.0.27",
     "@types/d3-hierarchy": "1.1.6",
+    "@visx/drag": "1.0.0",
     "@visx/group": "1.0.0",
     "@visx/hierarchy": "1.0.0",
     "@visx/shape": "1.0.0",

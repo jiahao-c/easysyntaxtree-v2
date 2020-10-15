@@ -11,7 +11,7 @@ import {
   sampleTree2WithID
 } from "./Utils/SampleTrees";
 import { HierarchyPointNode } from "d3-hierarchy";
-import { renameNode, addNewChild } from "./Utils/traverse";
+import { renameNode, addNewChild, removeSubtree } from "./Utils/traverse";
 import { Form } from "antd";
 import "antd/dist/antd.css";
 
@@ -51,6 +51,13 @@ function reducer(state: StateType, action: ActionType): StateType {
         past: [...state.past, state.tree],
         future: [],
         tree: addNewChild(state.tree, action.node.data.id)
+      };
+    case actions.REMOVE_SUBTREE:
+      return {
+        ...state,
+        past: [...state.past, state.tree],
+        future: [],
+        tree: removeSubtree(state.tree, action.node.data.id)
       };
     case actions.RESET_BLANK:
       return { ...state, tree: blankTreeWithID };

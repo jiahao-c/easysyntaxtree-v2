@@ -28,6 +28,7 @@ export default function SyntaxTree({
   lineOffset
 }: TreeProps) {
   const data = useMemo(() => hierarchy(tree), [tree]);
+  console.log(data.height);
   const xMax = width - margin.left - margin.right;
   const yMax = height - margin.top - margin.bottom;
   return width < 100 ? null : (
@@ -69,7 +70,7 @@ export default function SyntaxTree({
                 <Group top={top} left={left} key={key}>
                   <text
                     //control the y-axis of node text
-                    style={{ "user-select": "none" }}
+                    style={{ userSelect: "none" }}
                     dy="0em"
                     fontSize={15}
                     fontFamily="Arial"
@@ -81,16 +82,19 @@ export default function SyntaxTree({
                         ? "black"
                         : "black"
                     }
+                    onClick={(e: MouseEvent) => {
+                      if (e.shiftKey) {
+                        dispatch({ type: actions.REMOVE_SUBTREE, node: node });
+                      }
+                    }}
                     onDoubleClick={(e) => {
-                      console.log("on double click");
                       dispatch({ type: actions.START_EDIT, node: node });
-                      e.stopPropagation();
+                      //e.stopPropagation();
                     }}
                     onContextMenu={(e) => {
                       e.preventDefault();
-                      console.log("on right click");
                       dispatch({ type: actions.NEW_CHILD, node: node });
-                      e.stopPropagation();
+                      //e.stopPropagation();
                     }}
                     // onMouseOver={() => {
                     //   // console.log(

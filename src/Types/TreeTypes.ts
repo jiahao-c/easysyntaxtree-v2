@@ -17,6 +17,7 @@ export interface StateType {
 export enum actions {
   START_EDIT,
   NEW_CHILD,
+  REMOVE_SUBTREE,
   BG_CLICK,
   FINISH_EDIT,
   RESET_BLANK,
@@ -35,4 +36,5 @@ export type ActionType =
   | { type: actions.RESET_DP }
   | { type: actions.UNDO }
   | { type: actions.REDO }
-  | { type: actions.NEW_CHILD; node: HierarchyPointNode<TreeNode> };
+  | { type: actions.NEW_CHILD; node: HierarchyPointNode<TreeNode> }
+  | { type: actions.REMOVE_SUBTREE; node: HierarchyPointNode<TreeNode> };

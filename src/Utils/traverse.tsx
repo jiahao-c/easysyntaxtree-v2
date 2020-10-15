@@ -1,5 +1,6 @@
 import { TreeNode } from "../Types/TreeTypes";
 import produce from "immer";
+
 export function genID(tree: TreeNode) {
   let id = 0;
   function traverse(node: TreeNode) {
@@ -58,4 +59,25 @@ function addNewChild_Mutable(tree: TreeNode, idToModify: number) {
 
 export function addNewChild(tree: TreeNode, idToModify: number) {
   return produce(tree, (draft) => addNewChild_Mutable(draft, idToModify));
+}
+
+function removeSubtree_Mutable(tree: TreeNode, idToModify: number) {
+  function traverse(node: TreeNode) {
+    let filteredChildren = node.children.filter(
+      (child) => idToModify !== child.id
+    );
+    if (filteredChildren.length < node.children.length) {
+      node.children = filteredChildren;
+      return;
+    }
+    for (let child of node.children) {
+      traverse(child);
+    }
+  }
+  traverse(tree);
+}
+//TODO: test this function
+
+export function removeSubtree(tree: TreeNode, idToModify: number) {
+  return produce(tree, (draft) => removeSubtree_Mutable(draft, idToModify));
 }

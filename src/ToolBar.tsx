@@ -97,9 +97,9 @@ export default function ToolBar({
       >
         Redo
       </ButtonStyled>
-      <ButtonStyled icon={<DeleteOutlined />} type="primary">
+      {/* <ButtonStyled icon={<DeleteOutlined />} type="primary">
         Remove Subtree
-      </ButtonStyled>
+      </ButtonStyled> */}
       <ButtonStyled type="primary">Draw Movement</ButtonStyled>
       <Dropdown overlay={ExportMenu} placement="bottomCenter">
         <ButtonStyled type="primary">Export</ButtonStyled>
