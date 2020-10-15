@@ -48,6 +48,8 @@ function reducer(state: StateType, action: ActionType): StateType {
     case actions.NEW_CHILD:
       return {
         ...state,
+        past: [...state.past, state.tree],
+        future: [],
         tree: addNewChild(state.tree, action.node.data.id)
       };
     case actions.RESET_BLANK:
@@ -64,6 +66,8 @@ function reducer(state: StateType, action: ActionType): StateType {
 export default function App() {
   const [width, setWidth] = useState(500);
   const [height, setHeight] = useState(500);
+  const [angle, setAngle] = useState(24);
+  const [lineOffset, setLineOffset] = useState(6);
   const [form] = Form.useForm();
 
   const [state, dispatch] = useReducer(reducer, {
@@ -92,13 +96,19 @@ export default function App() {
         min-height: 100vh;
       `}
     >
-      <Sliders setWidth={setWidth} setHeight={setHeight} />
+      <Sliders
+        setWidth={setWidth}
+        setHeight={setHeight}
+        setAngle={setAngle}
+        setLineOffset={setLineOffset}
+      />
       <ToolBar
         isInputAvailable={state.inputAvailable}
         dispatch={dispatch}
         form={form}
         canUndo={state.past.length > 0}
         canRedo={state.future.length > 0}
+        tree={state.tree}
       />
       <div
         css={css`
@@ -111,6 +121,8 @@ export default function App() {
           width={width}
           height={height}
           dispatch={dispatch}
+          angle={angle}
+          lineOffset={lineOffset}
         />
       </div>
     </div>

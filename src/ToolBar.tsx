@@ -2,7 +2,7 @@
 //import { Dispatch, SetStateAction } from "react";
 import { css, jsx } from "@emotion/core";
 import styled from "@emotion/styled";
-import { Button, Form, Input } from "antd";
+import { Button, Form, Input, Dropdown, Menu } from "antd";
 import {
   DeleteOutlined,
   UndoOutlined,
@@ -10,7 +10,8 @@ import {
   QuestionCircleOutlined
 } from "@ant-design/icons";
 //import { TreeNode } from "../Types/TreeTypes";
-import { actions } from "./Types/TreeTypes";
+import { actions, TreeNode } from "./Types/TreeTypes";
+import downloadSvg, { downloadPng } from "svg-crowbar";
 import "antd/dist/antd.css";
 
 interface ToolBarProps {
@@ -19,6 +20,7 @@ interface ToolBarProps {
   form: any;
   canUndo: boolean;
   canRedo: boolean;
+  tree: TreeNode;
 }
 
 const ButtonStyled = styled(Button)`
@@ -30,8 +32,45 @@ export default function ToolBar({
   dispatch,
   form,
   canUndo,
-  canRedo
+  canRedo,
+  tree
 }: ToolBarProps) {
+  const ExportMenu = (
+    <Menu>
+      <Menu.Item onClick={() => console.log(JSON.stringify(tree))}>
+        JSON
+      </Menu.Item>
+      <Menu.Item
+        onClick={() =>
+          downloadSvg(document.querySelector("#treeSVG"), "EasySyntaxTree")
+        }
+      >
+        SVG
+      </Menu.Item>
+      <Menu.Item
+        onClick={() =>
+          downloadPng(document.querySelector("#treeSVG"), "EasySyntaxTree", {
+            css: "internal"
+          })
+        }
+      >
+        PNG
+      </Menu.Item>
+    </Menu>
+  );
+  const TemplateMenu = (
+    <Menu>
+      <Menu.Item onClick={() => dispatch({ type: actions.RESET_BLANK })}>
+        Blank Tree
+      </Menu.Item>
+      <Menu.Item onClick={() => dispatch({ type: actions.RESET_BASIC })}>
+        Tree with TP
+      </Menu.Item>
+      <Menu.Item onClick={() => dispatch({ type: actions.RESET_DP })}>
+        Tree with DP
+      </Menu.Item>
+    </Menu>
+  );
   return (
     <div
       css={css`
@@ -39,24 +78,9 @@ export default function ToolBar({
       `}
     >
       <ButtonStyled icon={<QuestionCircleOutlined />}>Help</ButtonStyled>
-      <ButtonStyled
-        type="primary"
-        onClick={() => dispatch({ type: actions.RESET_BASIC })}
-      >
-        Template: Basic Tree
-      </ButtonStyled>
-      <ButtonStyled
-        type="primary"
-        onClick={() => dispatch({ type: actions.RESET_DP })}
-      >
-        Template: Tree with DP
-      </ButtonStyled>
-      <ButtonStyled
-        type="primary"
-        onClick={() => dispatch({ type: actions.RESET_BLANK })}
-      >
-        Template: Blank Tree
-      </ButtonStyled>
+      <Dropdown overlay={TemplateMenu} placement="bottomCenter">
+        <ButtonStyled type="primary">Templates</ButtonStyled>
+      </Dropdown>
       <ButtonStyled
         onClick={() => dispatch({ type: actions.UNDO })}
         disabled={!canUndo}
@@ -77,7 +101,9 @@ export default function ToolBar({
         Remove Subtree
       </ButtonStyled>
       <ButtonStyled type="primary">Draw Movement</ButtonStyled>
-      <ButtonStyled type="primary">Export</ButtonStyled>
+      <Dropdown overlay={ExportMenu} placement="bottomCenter">
+        <ButtonStyled type="primary">Export</ButtonStyled>
+      </Dropdown>
 
       <Form
         form={form}

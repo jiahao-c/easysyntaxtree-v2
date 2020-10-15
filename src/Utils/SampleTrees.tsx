@@ -2,6 +2,7 @@ import { Node } from "./Node";
 import { TreeNode } from "../Types/TreeTypes";
 import { genID } from "./traverse";
 import produce from "immer";
+import * as data from "./sampleDPTree.json";
 export const sampleTree: TreeNode = Node(
   "TP",
   Node("NP", Node("Det", Node("a")), Node("N'", Node("N", Node("linguist")))),
@@ -23,18 +24,7 @@ export const sampleTree: TreeNode = Node(
   )
 );
 
-export const sampleTree2: TreeNode = Node(
-  "TP",
-  Node("DP", Node("D'", Node("D"), Node("NP", Node("N", Node("We"))))),
-  Node(
-    "T'",
-    Node("T", Node("should")),
-    Node(
-      "VP",
-      Node("V'", Node("V'", Node("V'", Node("V", Node("worry")))), Node("PP"))
-    )
-  )
-);
+export const sampleTree2: TreeNode = data;
 
 export const sampleTreeWithID = produce(sampleTree, (draft) => {
   genID(draft);

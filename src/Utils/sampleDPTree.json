@@ -1,0 +1,333 @@
+{
+  "name": "TP",
+  "children": [
+    {
+      "name": "DP",
+      "children": [
+        {
+          "name": "D'",
+          "children": [
+            {
+              "name": "D",
+              "children": [],
+              "id": 3
+            },
+            {
+              "name": "NP",
+              "children": [
+                {
+                  "name": "N",
+                  "children": [
+                    {
+                      "name": "We",
+                      "children": [],
+                      "id": 6
+                    }
+                  ],
+                  "id": 5
+                }
+              ],
+              "id": 4
+            }
+          ],
+          "id": 2
+        }
+      ],
+      "id": 1
+    },
+    {
+      "name": "T'",
+      "children": [
+        {
+          "name": "T",
+          "children": [
+            {
+              "name": "should",
+              "children": [],
+              "id": 9
+            }
+          ],
+          "id": 8
+        },
+        {
+          "name": "VP",
+          "children": [
+            {
+              "name": "V'",
+              "children": [
+                {
+                  "name": "V'",
+                  "children": [
+                    {
+                      "name": "V'",
+                      "children": [
+                        {
+                          "name": "V",
+                          "children": [
+                            {
+                              "name": "worry",
+                              "children": [],
+                              "id": 15
+                            }
+                          ],
+                          "id": 14
+                        }
+                      ],
+                      "id": 13
+                    }
+                  ],
+                  "id": 12
+                },
+                {
+                  "name": "PP",
+                  "children": [
+                    {
+                      "name": "P'",
+                      "children": [
+                        {
+                          "name": "P",
+                          "children": [
+                            {
+                              "name": "about",
+                              "children": [],
+                              "id": 19
+                            }
+                          ],
+                          "id": 18
+                        },
+                        {
+                          "name": "CP",
+                          "children": [
+                            {
+                              "name": "C",
+                              "children": [
+                                {
+                                  "name": "whether",
+                                  "children": [],
+                                  "id": 22
+                                }
+                              ],
+                              "id": 21
+                            },
+                            {
+                              "name": "TP",
+                              "children": [
+                                {
+                                  "name": "DP",
+                                  "children": [
+                                    {
+                                      "name": "D'",
+                                      "children": [
+                                        {
+                                          "name": "D",
+                                          "children": [],
+                                          "id": 26
+                                        },
+                                        {
+                                          "name": "NP",
+                                          "children": [
+                                            {
+                                              "name": "N'",
+                                              "children": [
+                                                {
+                                                  "name": "N",
+                                                  "children": [
+                                                    {
+                                                      "name": "we",
+                                                      "children": [],
+                                                      "id": 30
+                                                    }
+                                                  ],
+                                                  "id": 29
+                                                }
+                                              ],
+                                              "id": 28
+                                            }
+                                          ],
+                                          "id": 27
+                                        }
+                                      ],
+                                      "id": 25
+                                    }
+                                  ],
+                                  "id": 24
+                                },
+                                {
+                                  "name": "T'",
+                                  "children": [
+                                    {
+                                      "name": "T",
+                                      "children": [
+                                        {
+                                          "name": "will",
+                                          "children": [],
+                                          "id": 33
+                                        }
+                                      ],
+                                      "id": 32
+                                    },
+                                    {
+                                      "name": "VP",
+                                      "children": [
+                                        {
+                                          "name": "V'",
+                                          "children": [
+                                            {
+                                              "name": "V",
+                                              "children": [
+                                                {
+                                                  "name": "see",
+                                                  "children": [],
+                                                  "id": 37
+                                                }
+                                              ],
+                                              "id": 36
+                                            },
+                                            {
+                                              "name": "DP",
+                                              "children": [
+                                                {
+                                                  "name": "D'",
+                                                  "children": [
+                                                    {
+                                                      "name": "D",
+                                                      "children": [
+                                                        {
+                                                          "name": "a",
+                                                          "children": [],
+                                                          "id": 41
+                                                        }
+                                                      ],
+                                                      "id": 40
+                                                    },
+                                                    {
+                                                      "name": "NP",
+                                                      "children": [
+                                                        {
+                                                          "name": "N'",
+                                                          "children": [
+                                                            {
+                                                              "name": "N",
+                                                              "children": [
+                                                                {
+                                                                  "name": "movie",
+                                                                  "children": [],
+                                                                  "id": 45
+                                                                }
+                                                              ],
+                                                              "id": 44
+                                                            }
+                                                          ],
+                                                          "id": 43
+                                                        }
+                                                      ],
+                                                      "id": 42
+                                                    }
+                                                  ],
+                                                  "id": 39
+                                                }
+                                              ],
+                                              "id": 38
+                                            }
+                                          ],
+                                          "id": 35
+                                        }
+                                      ],
+                                      "id": 34
+                                    }
+                                  ],
+                                  "id": 31
+                                }
+                              ],
+                              "id": 23
+                            }
+                          ],
+                          "id": 20
+                        }
+                      ],
+                      "id": 17
+                    }
+                  ],
+                  "id": 16
+                }
+              ],
+              "id": 11
+            },
+            {
+              "name": "PP",
+              "children": [
+                {
+                  "name": "P'",
+                  "children": [
+                    {
+                      "name": "P",
+                      "children": [
+                        {
+                          "name": "in",
+                          "children": [],
+                          "id": 49
+                        }
+                      ],
+                      "id": 48
+                    },
+                    {
+                      "name": "DP",
+                      "children": [
+                        {
+                          "name": "D'",
+                          "children": [
+                            {
+                              "name": "D",
+                              "children": [
+                                {
+                                  "name": "the",
+                                  "children": [],
+                                  "id": 53
+                                }
+                              ],
+                              "id": 52
+                            },
+                            {
+                              "name": "NP",
+                              "children": [
+                                {
+                                  "name": "N'",
+                                  "children": [
+                                    {
+                                      "name": "N",
+                                      "children": [
+                                        {
+                                          "name": "evening",
+                                          "children": [],
+                                          "id": 57
+                                        }
+                                      ],
+                                      "id": 56
+                                    }
+                                  ],
+                                  "id": 55
+                                }
+                              ],
+                              "id": 54
+                            }
+                          ],
+                          "id": 51
+                        }
+                      ],
+                      "id": 50
+                    }
+                  ],
+                  "id": 47
+                }
+              ],
+              "id": 46
+            }
+          ],
+          "id": 10
+        }
+      ],
+      "id": 7
+    }
+  ],
+  "id": 0
+}

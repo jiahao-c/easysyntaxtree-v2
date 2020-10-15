@@ -7,8 +7,9 @@
         "esModuleInterop": true,
         "lib": [
             "dom",
-            "es2015"
+            "ES2018"
         ],
-        "jsx": "react"
+        "jsx": "react",
+        "resolveJsonModule": true
     }
 }

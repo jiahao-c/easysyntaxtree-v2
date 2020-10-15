@@ -15,20 +15,24 @@ interface TreeProps {
   height: number;
   tree: TreeNode;
   dispatch: any;
+  angle: number;
+  lineOffset: number;
 }
 
 export default function SyntaxTree({
   width,
   height,
   tree,
-  dispatch
+  dispatch,
+  angle,
+  lineOffset
 }: TreeProps) {
   const data = useMemo(() => hierarchy(tree), [tree]);
   const xMax = width - margin.left - margin.right;
   const yMax = height - margin.top - margin.bottom;
-
   return width < 100 ? null : (
     <svg
+      id={"treeSVG"}
       width={width}
       height={height}
       onClick={() => dispatch({ type: actions.BG_CLICK })}
@@ -45,12 +49,12 @@ export default function SyntaxTree({
                 strokeWidth="1"
                 fill="none"
                 // control the y-axis of edge line
-                y={(node: any) => node.y + 6}
+                y={(node: any) => node.y + lineOffset}
                 // control the open angle of edge
                 // by controlling the y-axis of end point of edge
                 target={({ target }) => ({
                   ...target,
-                  y: target.y - 24
+                  y: target.y - angle
                 })}
               />
             ))}
@@ -65,6 +69,7 @@ export default function SyntaxTree({
                 <Group top={top} left={left} key={key}>
                   <text
                     //control the y-axis of node text
+                    style={{ "user-select": "none" }}
                     dy="0em"
                     fontSize={15}
                     fontFamily="Arial"
