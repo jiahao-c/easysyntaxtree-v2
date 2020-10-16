@@ -83,7 +83,7 @@ export default function SyntaxTree({
                         : "black"
                     }
                     onClick={(e: MouseEvent) => {
-                      if (e.shiftKey) {
+                      if (e.ctrlKey) {
                         dispatch({ type: actions.REMOVE_SUBTREE, node: node });
                       }
                     }}

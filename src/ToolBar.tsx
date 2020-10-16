@@ -113,7 +113,11 @@ export default function ToolBar({
         }}
       >
         <Form.Item name="newText">
-          <Input addonBefore={"Node Text:"} disabled={!isInputAvailable} />
+          <Input
+            addonBefore={"Node Text:"}
+            //addonAfter={"Press Enter to make change"}
+            disabled={!isInputAvailable}
+          />
         </Form.Item>
       </Form>
     </div>
