@@ -82,18 +82,23 @@ export default function SyntaxTree({
                         ? "black"
                         : "black"
                     }
-                    onClick={(e: MouseEvent) => {
-                      if (e.ctrlKey) {
-                        dispatch({ type: actions.REMOVE_SUBTREE, node: node });
-                      }
-                    }}
+                    // onClick={(e: MouseEvent) => {
+                    //   if (e.ctrlKey) {
+                    //     dispatch({ type: actions.REMOVE_SUBTREE, node: node });
+                    //   }
+                    // }}
                     onDoubleClick={(e) => {
                       dispatch({ type: actions.START_EDIT, node: node });
                       //e.stopPropagation();
                     }}
                     onContextMenu={(e) => {
                       e.preventDefault();
-                      dispatch({ type: actions.NEW_CHILD, node: node });
+                      if (e.ctrlKey) {
+                        dispatch({ type: actions.REMOVE_SUBTREE, node: node });
+                        //show an alert "DELETE MODE: hold shift and click on a node to remove the subtree"
+                      } else {
+                        dispatch({ type: actions.NEW_CHILD, node: node });
+                      }
                       //e.stopPropagation();
                     }}
                     // onMouseOver={() => {

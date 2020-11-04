@@ -2,7 +2,8 @@
 //import { Dispatch, SetStateAction } from "react";
 import { css, jsx } from "@emotion/core";
 import styled from "@emotion/styled";
-import { Button, Form, Input, Dropdown, Menu } from "antd";
+import { useState } from "react";
+import { Button, Form, Input, Dropdown, Menu, Modal } from "antd";
 import {
   DeleteOutlined,
   UndoOutlined,
@@ -71,13 +72,37 @@ export default function ToolBar({
       </Menu.Item>
     </Menu>
   );
+
+  const [isHelpVisible, setIsHelpVisible] = useState(false);
+
   return (
     <div
       css={css`
         text-align: center;
       `}
     >
-      <ButtonStyled icon={<QuestionCircleOutlined />}>Help</ButtonStyled>
+      <Modal
+        title="Basic Modal"
+        visible={isHelpVisible}
+        onOk={() => setIsHelpVisible(false)}
+        onCancel={() => setIsHelpVisible(false)}
+        footer={[
+          <Button key="back" onClick={() => setIsHelpVisible(false)}>
+            OK
+          </Button>
+        ]}
+      >
+        <p>To start, select a template</p>
+        <p>To add a child, right click on a node</p>
+        <p>To remove a subtree, hold shift and right click on a node </p>
+        <p>To edit a node, double click on it</p>
+      </Modal>
+      <ButtonStyled
+        icon={<QuestionCircleOutlined />}
+        onClick={() => setIsHelpVisible(true)}
+      >
+        Help
+      </ButtonStyled>
       <Dropdown overlay={TemplateMenu} placement="bottomCenter">
         <ButtonStyled type="primary">Templates</ButtonStyled>
       </Dropdown>

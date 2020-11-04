@@ -76,7 +76,7 @@ export default function App() {
   const [angle, setAngle] = useState(24);
   const [lineOffset, setLineOffset] = useState(6);
   const [form] = Form.useForm();
-
+  const [isAlertVisible, setIsAlertVisible] = useState(false);
   const [state, dispatch] = useReducer(reducer, {
     tree: sampleTreeWithID,
     operatingNode: null,
