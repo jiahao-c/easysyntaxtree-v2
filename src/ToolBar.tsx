@@ -93,8 +93,10 @@ export default function ToolBar({
         ]}
       >
         <p>To start, select a template</p>
-        <p>To add a child, right click on a node</p>
-        <p>To remove a subtree, hold shift and right click on a node </p>
+        <p>To add a child, Right Click on a node</p>
+        <p>
+          To remove a subtree, hold <kbd>Control</kbd> and left click on a node{" "}
+        </p>
         <p>To edit a node, double click on it</p>
       </Modal>
       <ButtonStyled

@@ -123,7 +123,6 @@ export default function App() {
         canRedo={state.future.length > 0}
         tree={state.tree}
       />
-      <AlertDelete isVisible={isAlertVisible} />
       <div
         css={css`
           text-align: center;
@@ -131,6 +130,7 @@ export default function App() {
         `}
         onContextMenu={(e) => e.preventDefault()}
       >
+        <AlertDelete isVisible={isAlertVisible} />
         <SyntaxTree
           tree={state.tree}
           width={width}
