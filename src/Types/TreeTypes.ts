@@ -4,6 +4,7 @@ export interface TreeNode {
   name: string;
   children: TreeNode[];
   id: number;
+  // triangleChild: boolean
 }
 
 export interface StateType {

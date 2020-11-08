@@ -1,7 +1,7 @@
 {
   "name": "estv2",
   "version": "1.0.0",
-  "description": "",
+  "description": "Easy Syntax Tree Version2",
   "keywords": [],
   "main": "src/index.tsx",
   "dependencies": {

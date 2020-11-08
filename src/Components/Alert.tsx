@@ -9,6 +9,7 @@ interface AlertProps {
 export default function AlertDelete(props: AlertProps) {
   //key down isVisible, key up . Use keybaord event
   return (
+    (props.isVisible)?
     <div>
       <Alert
         message="DELETE MODE: click on a node to remove the subtree"
@@ -16,6 +17,6 @@ export default function AlertDelete(props: AlertProps) {
         showIcon
         closable
       />
-    </div>
+    </div>:null
   );
 }

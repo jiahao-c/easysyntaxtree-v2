@@ -28,7 +28,7 @@ export default function SyntaxTree({
   lineOffset
 }: TreeProps) {
   const data = useMemo(() => hierarchy(tree), [tree]);
-  console.log(data.height);
+  //console.log(data.height);
   const xMax = width - margin.left - margin.right;
   const yMax = height - margin.top - margin.bottom;
   return width < 100 ? null : (

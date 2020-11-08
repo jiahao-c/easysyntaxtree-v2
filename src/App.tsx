@@ -4,6 +4,7 @@ import { useState, useEffect, useReducer } from "react";
 import SyntaxTree from "./SyntaxTree";
 import ToolBar from "./ToolBar";
 import Sliders from "./Components/Sliders";
+import AlertDelete from "./Components/Alert";
 import { TreeNode, StateType, ActionType, actions } from "./Types/TreeTypes";
 import {
   sampleTreeWithID,
@@ -86,6 +87,11 @@ export default function App() {
   });
 
   useEffect(() => {
+    window.addEventListener("keydown", (e) => setIsAlertVisible(e.ctrlKey));
+    window.addEventListener("keyup", (e) => setIsAlertVisible(e.ctrlKey));
+  }, []);
+
+  useEffect(() => {
     if (state.operatingNode) {
       form.setFieldsValue({ newText: state.operatingNode.data.name });
     } else {
@@ -117,11 +123,13 @@ export default function App() {
         canRedo={state.future.length > 0}
         tree={state.tree}
       />
+      <AlertDelete isVisible={isAlertVisible} />
       <div
         css={css`
           text-align: center;
           background-color: #fff;
         `}
+        onContextMenu={(e) => e.preventDefault()}
       >
         <SyntaxTree
           tree={state.tree}
