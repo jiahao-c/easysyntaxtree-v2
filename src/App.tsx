@@ -11,8 +11,14 @@ import {
   blankTreeWithID,
   sampleTree2WithID
 } from "./Utils/SampleTrees";
+import { calcWidth, calcHeight } from "./Utils/dimension";
 import { HierarchyPointNode } from "d3-hierarchy";
-import { renameNode, addNewChild, removeSubtree } from "./Utils/traverse";
+import {
+  renameNode,
+  addNewChild,
+  removeSubtree,
+  getHeight
+} from "./Utils/traverse";
 import { Form } from "antd";
 import "antd/dist/antd.css";
 
@@ -72,8 +78,6 @@ function reducer(state: StateType, action: ActionType): StateType {
 }
 
 export default function App() {
-  const [width, setWidth] = useState(500);
-  const [height, setHeight] = useState(500);
   const [angle, setAngle] = useState(24);
   const [lineOffset, setLineOffset] = useState(6);
   const [form] = Form.useForm();
@@ -85,6 +89,14 @@ export default function App() {
     past: [],
     future: []
   });
+  const [width, setWidth] = useState(calcWidth(getHeight(state.tree)));
+  const [height, setHeight] = useState(calcHeight(getHeight(state.tree)));
+
+  useEffect(() => {
+    let treeHeight = getHeight(state.tree);
+    setWidth(calcWidth(treeHeight));
+    setHeight(calcHeight(treeHeight));
+  }, [state.tree]);
 
   useEffect(() => {
     window.addEventListener("keydown", (e) => setIsAlertVisible(e.ctrlKey));

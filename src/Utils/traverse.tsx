@@ -1,5 +1,6 @@
 import { TreeNode } from "../Types/TreeTypes";
 import produce from "immer";
+import { hierarchy } from "@visx/hierarchy";
 
 export function genID(tree: TreeNode) {
   let id = 0;
@@ -76,8 +77,11 @@ function removeSubtree_Mutable(tree: TreeNode, idToModify: number) {
   }
   traverse(tree);
 }
-//TODO: test this function
 
 export function removeSubtree(tree: TreeNode, idToModify: number) {
   return produce(tree, (draft) => removeSubtree_Mutable(draft, idToModify));
+}
+
+export function getHeight(tree: TreeNode) {
+  return hierarchy(tree).height;
 }

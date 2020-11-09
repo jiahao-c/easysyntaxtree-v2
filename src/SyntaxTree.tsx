@@ -28,14 +28,6 @@ export default function SyntaxTree({
   lineOffset
 }: TreeProps) {
   const data = useMemo(() => hierarchy(tree), [tree]);
-  console.log(data.height);
-  //>5 data.height*40+210
-  //formula 1: 70n+60
-  //formula 2: 40n+200
-  //n=7, height: 7*40+6*30+90 = 550
-  //
-  // [width, height] <6
-  //1~7: [0,0], [180, 180], [230, 230], [280, 290], [340, 360], [400, 450], [450, 500], [500, 550]
   const xMax = width - margin.left - margin.right;
   const yMax = height - margin.top - margin.bottom;
   return width < 100 ? null : (
