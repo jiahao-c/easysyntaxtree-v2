@@ -15,9 +15,9 @@
     "@visx/shape": "1.0.0",
     "antd": "4.8.0",
     "immer": "7.0.9",
-    "react": "16.13.1",
-    "react-dom": "16.13.1",
-    "react-scripts": "3.4.3",
+    "react": "17.0.1",
+    "react-dom": "17.0.1",
+    "react-scripts": "4.0.0",
     "svg-crowbar": "0.6.1",
     "use-immer": "0.4.1"
   },

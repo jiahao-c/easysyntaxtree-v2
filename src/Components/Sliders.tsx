@@ -1,7 +1,10 @@
 import React from "react";
-import { Slider } from "antd";
+import { Slider, Collapse } from "antd";
+const { Panel } = Collapse;
 
 interface SliderProps {
+  currentWidth: number;
+  currentHeight: number;
   setWidth: React.Dispatch<React.SetStateAction<number>>;
   setHeight: React.Dispatch<React.SetStateAction<number>>;
   setAngle: React.Dispatch<React.SetStateAction<number>>;
@@ -11,20 +14,24 @@ interface SliderProps {
 export default function Sliders(props: SliderProps) {
   return (
     <div>
-      Width Control:
-      <Slider
-        defaultValue={500}
-        min={100}
-        max={1000}
-        onAfterChange={props.setWidth}
-      />
-      Height Control:
-      <Slider
-        defaultValue={500}
-        min={100}
-        max={1000}
-        onAfterChange={props.setHeight}
-      />
+      <Collapse>
+        <Panel header="Advanced Control" key="1">
+          Width Control:
+          <Slider
+            defaultValue={props.currentWidth}
+            min={100}
+            max={1000}
+            onAfterChange={props.setWidth}
+          />
+          Height Control:
+          <Slider
+            defaultValue={props.currentHeight}
+            min={100}
+            max={1000}
+            onAfterChange={props.setHeight}
+          />
+        </Panel>
+      </Collapse>
       {/*Angle Control:
         <Slider
         defaultValue={24}

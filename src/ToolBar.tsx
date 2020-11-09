@@ -82,7 +82,7 @@ export default function ToolBar({
       `}
     >
       <Modal
-        title="Basic Modal"
+        title="How To Use Easy Syntax Tree"
         visible={isHelpVisible}
         onOk={() => setIsHelpVisible(false)}
         onCancel={() => setIsHelpVisible(false)}
@@ -95,7 +95,7 @@ export default function ToolBar({
         <p>To start, select a template</p>
         <p>To add a child, Right Click on a node</p>
         <p>
-          To remove a subtree, hold <kbd>Control</kbd> and left click on a node{" "}
+          To remove a subtree, hold <kbd>Control</kbd> and Left Click on a node{" "}
         </p>
         <p>To edit a node, double click on it</p>
       </Modal>
@@ -103,7 +103,7 @@ export default function ToolBar({
         icon={<QuestionCircleOutlined />}
         onClick={() => setIsHelpVisible(true)}
       >
-        Help
+        How-to
       </ButtonStyled>
       <Dropdown overlay={TemplateMenu} placement="bottomCenter">
         <ButtonStyled type="primary">Templates</ButtonStyled>
@@ -127,7 +127,7 @@ export default function ToolBar({
       {/* <ButtonStyled icon={<DeleteOutlined />} type="primary">
         Remove Subtree
       </ButtonStyled> */}
-      <ButtonStyled type="primary">Draw Movement</ButtonStyled>
+      {/* <ButtonStyled type="primary">Draw Movement Trace</ButtonStyled> */}
       <Dropdown overlay={ExportMenu} placement="bottomCenter">
         <ButtonStyled type="primary">Export</ButtonStyled>
       </Dropdown>

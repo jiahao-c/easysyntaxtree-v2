@@ -36,6 +36,7 @@ export default function SyntaxTree({
       width={width}
       height={height}
       onClick={() => dispatch({ type: actions.BG_CLICK })}
+      style={{ backgroundColor: "white" }}
     >
       <Tree<TreeNode> root={data} size={[xMax, yMax]}>
         {(tree) => (

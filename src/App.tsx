@@ -122,6 +122,8 @@ export default function App() {
       `}
     >
       <Sliders
+        currentWidth={width}
+        currentHeight={height}
         setWidth={setWidth}
         setHeight={setHeight}
         setAngle={setAngle}
