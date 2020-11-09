@@ -12,6 +12,7 @@ import {
 } from "@ant-design/icons";
 //import { TreeNode } from "../Types/TreeTypes";
 import { actions, TreeNode } from "./Types/TreeTypes";
+import { removeID } from "./Utils/traverse";
 import downloadSvg, { downloadPng } from "svg-crowbar";
 import "antd/dist/antd.css";
 
@@ -38,6 +39,9 @@ export default function ToolBar({
 }: ToolBarProps) {
   const ExportMenu = (
     <Menu>
+      <Menu.Item onClick={() => console.log(JSON.stringify(removeID(tree)))}>
+        JSON without ID
+      </Menu.Item>
       <Menu.Item onClick={() => console.log(JSON.stringify(tree))}>
         JSON
       </Menu.Item>
@@ -56,6 +60,20 @@ export default function ToolBar({
         }
       >
         PNG
+      </Menu.Item>
+    </Menu>
+  );
+  const ImportMenu = (
+    <Menu>
+      <Menu.Item onClick={() => console.log(JSON.stringify(tree))}>
+        JSON
+      </Menu.Item>
+      <Menu.Item
+        onClick={() =>
+          downloadSvg(document.querySelector("#treeSVG"), "EasySyntaxTree")
+        }
+      >
+        [NP [N Brackets]]
       </Menu.Item>
     </Menu>
   );
@@ -130,6 +148,9 @@ export default function ToolBar({
       {/* <ButtonStyled type="primary">Draw Movement Trace</ButtonStyled> */}
       <Dropdown overlay={ExportMenu} placement="bottomCenter">
         <ButtonStyled type="primary">Export</ButtonStyled>
+      </Dropdown>
+      <Dropdown overlay={ImportMenu} placement="bottomCenter">
+        <ButtonStyled type="primary">Import</ButtonStyled>
       </Dropdown>
 
       <Form

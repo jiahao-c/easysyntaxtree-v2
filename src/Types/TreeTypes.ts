@@ -3,7 +3,7 @@ import { HierarchyPointNode } from "d3-hierarchy";
 export interface TreeNode {
   name: string;
   children: TreeNode[];
-  id: number;
+  id?: number;
   // triangleChild: boolean
 }
 

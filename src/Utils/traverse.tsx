@@ -11,6 +11,19 @@ export function genID(tree: TreeNode) {
   traverse(tree);
 }
 
+function removeID_Mutable(tree: TreeNode) {
+  delete tree.id;
+  function traverse(node: TreeNode) {
+    delete node.id;
+    node.children?.map((subtree) => traverse(subtree));
+  }
+  traverse(tree);
+}
+
+export function removeID(tree: TreeNode) {
+  return produce(tree, (draft) => removeID_Mutable(draft));
+}
+
 function renameNode_Mutable(
   tree: TreeNode,
   idToModify: number,

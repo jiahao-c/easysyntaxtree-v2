@@ -36,7 +36,7 @@ function reducer(state: StateType, action: ActionType): StateType {
         inputAvailable: false,
         tree: renameNode(
           state.tree,
-          state.operatingNode!.data.id,
+          state.operatingNode!.data.id!,
           action.newText
         )
       };
@@ -57,14 +57,14 @@ function reducer(state: StateType, action: ActionType): StateType {
         ...state,
         past: [...state.past, state.tree],
         future: [],
-        tree: addNewChild(state.tree, action.node.data.id)
+        tree: addNewChild(state.tree, action.node.data.id!)
       };
     case actions.REMOVE_SUBTREE:
       return {
         ...state,
         past: [...state.past, state.tree],
         future: [],
-        tree: removeSubtree(state.tree, action.node.data.id)
+        tree: removeSubtree(state.tree, action.node.data.id!)
       };
     case actions.RESET_BLANK:
       return { ...state, tree: blankTreeWithID };
