@@ -3,7 +3,7 @@ import { jsx } from "@emotion/core";
 import { useMemo, MouseEvent } from "react";
 import { Group } from "@visx/group";
 import { hierarchy, Tree } from "@visx/hierarchy";
-import { LinkVerticalLine } from "@visx/shape";
+import { LinkVerticalLine, Polygon } from "@visx/shape";
 import { TreeNode } from "./Types/TreeTypes";
 import { HierarchyPointNode } from "d3-hierarchy";
 import { ActionType, actions } from "./Types/TreeTypes";
@@ -42,23 +42,39 @@ export default function SyntaxTree({
         {(tree) => (
           <Group top={margin.top} left={margin.left}>
             {/* render the edges */}
-            {tree.links().map((link, i) => (
-              <LinkVerticalLine
-                key={i}
-                data={link}
-                stroke="black"
-                strokeWidth="1"
-                fill="none"
-                // control the y-axis of edge line
-                y={(node: any) => node.y + lineOffset}
-                // control the open angle of edge
-                // by controlling the y-axis of end point of edge
-                target={({ target }) => ({
-                  ...target,
-                  y: target.y - angle
-                })}
-              />
-            ))}
+            {tree.links().map((link, i) =>
+              [6].includes(link.target.data.id!) ? (
+                //draw a triangle here using visx shape
+                <Polygon
+                  sides={3}
+                  size={20}
+                  // rotate={90}
+                  points={`${link.source.x},
+                  ${link.source.y + 8} ${link.target.x - 20},${
+                    link.target.y - 15
+                  } ${link.target.x + 20},${link.target.y - 15}`}
+                  fill={"white"}
+                  stroke={"black"}
+                  strokeWidth={1}
+                />
+              ) : (
+                <LinkVerticalLine
+                  key={i}
+                  data={link}
+                  stroke="black"
+                  strokeWidth="1"
+                  fill="none"
+                  // control the y-axis of edge line
+                  y={(node: any) => node.y + lineOffset}
+                  // control the open angle of edge
+                  // by controlling the y-axis of end point of edge
+                  target={({ target }) => ({
+                    ...target,
+                    y: target.y - angle
+                  })}
+                />
+              )
+            )}
             {/* render the nodes */}
             {tree.descendants().map((node, key) => {
               let top: number;
@@ -82,14 +98,8 @@ export default function SyntaxTree({
                         ? "black"
                         : "black"
                     }
-                    // onClick={(e: MouseEvent) => {
-                    //   if (e.ctrlKey) {
-                    //     dispatch({ type: actions.REMOVE_SUBTREE, node: node });
-                    //   }
-                    // }}
                     onDoubleClick={(e) => {
                       dispatch({ type: actions.START_EDIT, node: node });
-                      //e.stopPropagation();
                     }}
                     onContextMenu={(e) => {
                       e.preventDefault();
@@ -99,13 +109,7 @@ export default function SyntaxTree({
                       } else {
                         dispatch({ type: actions.NEW_CHILD, node: node });
                       }
-                      //e.stopPropagation();
                     }}
-                    // onMouseOver={() => {
-                    //   // console.log(
-                    //   //   `hovering: ${JSON.stringify(node.data.name)}`
-                    //   // );
-                    // }}
                   >
                     {node.data.name}
                   </text>
