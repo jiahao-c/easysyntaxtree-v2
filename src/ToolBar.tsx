@@ -65,16 +65,8 @@ export default function ToolBar({
   );
   const ImportMenu = (
     <Menu>
-      <Menu.Item onClick={() => console.log(JSON.stringify(tree))}>
-        JSON
-      </Menu.Item>
-      <Menu.Item
-        onClick={() =>
-          downloadSvg(document.querySelector("#treeSVG"), "EasySyntaxTree")
-        }
-      >
-        [NP [N Brackets]]
-      </Menu.Item>
+      <Menu.Item>JSON</Menu.Item>
+      <Menu.Item>[NP [N Brackets]]</Menu.Item>
     </Menu>
   );
   const TemplateMenu = (

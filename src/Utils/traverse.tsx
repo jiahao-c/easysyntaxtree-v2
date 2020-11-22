@@ -1,14 +1,33 @@
 import { TreeNode } from "../Types/TreeTypes";
-import produce from "immer";
 import { hierarchy } from "@visx/hierarchy";
+import produce from "immer";
 
-export function genID(tree: TreeNode) {
+export function genID_Mutable(tree: TreeNode) {
   let id = 0;
   function traverse(node: TreeNode) {
-    node["id"] = id++;
+    node.id = id++;
     node.children?.map((subtree) => traverse(subtree));
   }
   traverse(tree);
+}
+
+export function genID(tree: TreeNode) {
+  return produce(tree, (draft) => genID_Mutable(draft));
+}
+
+//assign triangleChild properties, also gens id.
+function initTree_Mutable(tree: TreeNode) {
+  let id = 0;
+  function traverse(node: TreeNode) {
+    node.triangleChild = false;
+    node.id = id++;
+    node.children?.map((subtree) => traverse(subtree));
+  }
+  traverse(tree);
+}
+
+export function initTree(tree: TreeNode) {
+  return produce(tree, (draft) => initTree_Mutable(draft));
 }
 
 function removeID_Mutable(tree: TreeNode) {
@@ -61,7 +80,7 @@ function addNewChild_Mutable(tree: TreeNode, idToModify: number) {
         id: Number.MAX_SAFE_INTEGER
       });
       //re-generate id to ensure uniqueness
-      genID(tree);
+      genID_Mutable(tree);
       return;
     }
     for (let child of node.children) {

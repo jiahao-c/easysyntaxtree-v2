@@ -1,3 +1,5 @@
+import { HierarchyNode } from "d3-hierarchy";
+import { TreeNode } from "./Types/TreeTypes";
 export function calcWidth(treeHeight: number) {
   //values are manually tuned from experiment
   switch (treeHeight) {
@@ -22,6 +24,14 @@ export function calcWidth(treeHeight: number) {
   }
 }
 
-export function calcHeight(treeHeight: number) {
+export function calcHeight(treeHeight: number): number {
   return 45 * treeHeight + 150;
+}
+
+export function calcHalfTextWidth(node: HierarchyNode<TreeNode>): number {
+  return 20;
+  // let textElement: SVGGraphicsElement = document.getElementById(
+  //   id.toString()
+  // ) as any;
+  // return textElement.getBBox().width / 2;
 }

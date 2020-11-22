@@ -1,12 +1,13 @@
 /** @jsx jsx */
 import { jsx } from "@emotion/core";
-import { useMemo, MouseEvent } from "react";
+import { useMemo, useImperativeHandle, useRef, forwardRef } from "react";
 import { Group } from "@visx/group";
 import { hierarchy, Tree } from "@visx/hierarchy";
 import { LinkVerticalLine, Polygon } from "@visx/shape";
 import { TreeNode } from "./Types/TreeTypes";
 import { HierarchyPointNode } from "d3-hierarchy";
 import { ActionType, actions } from "./Types/TreeTypes";
+import { calcHalfTextWidth } from "./Utils/dimension";
 
 const margin = { top: 20, left: 30, right: 30, bottom: 70 };
 
@@ -41,40 +42,6 @@ export default function SyntaxTree({
       <Tree<TreeNode> root={data} size={[xMax, yMax]}>
         {(tree) => (
           <Group top={margin.top} left={margin.left}>
-            {/* render the edges */}
-            {tree.links().map((link, i) =>
-              [6].includes(link.target.data.id!) ? (
-                //draw a triangle here using visx shape
-                <Polygon
-                  sides={3}
-                  size={20}
-                  // rotate={90}
-                  points={`${link.source.x},
-                  ${link.source.y + 8} ${link.target.x - 20},${
-                    link.target.y - 15
-                  } ${link.target.x + 20},${link.target.y - 15}`}
-                  fill={"white"}
-                  stroke={"black"}
-                  strokeWidth={1}
-                />
-              ) : (
-                <LinkVerticalLine
-                  key={i}
-                  data={link}
-                  stroke="black"
-                  strokeWidth="1"
-                  fill="none"
-                  // control the y-axis of edge line
-                  y={(node: any) => node.y + lineOffset}
-                  // control the open angle of edge
-                  // by controlling the y-axis of end point of edge
-                  target={({ target }) => ({
-                    ...target,
-                    y: target.y - angle
-                  })}
-                />
-              )
-            )}
             {/* render the nodes */}
             {tree.descendants().map((node, key) => {
               let top: number;
@@ -86,6 +53,7 @@ export default function SyntaxTree({
                 <Group top={top} left={left} key={key}>
                   <text
                     //control the y-axis of node text
+                    id={node.data.id!.toString()}
                     style={{ userSelect: "none" }}
                     dy="0em"
                     fontSize={15}
@@ -116,6 +84,45 @@ export default function SyntaxTree({
                 </Group>
               );
             })}
+            {/* render the edges */}
+            {tree.links().map((link, i) =>
+              link.target.data.triangleChild! ? (
+                //draw a triangle here using visx shape
+                <Polygon
+                  sides={3}
+                  size={20}
+                  // rotate={90}
+                  points={`
+                  ${link.source.x},
+                  ${link.source.y + 8} 
+                  ${link.target.x - calcHalfTextWidth(link.target.data)},${
+                    link.target.y - 15
+                  } 
+                  ${link.target.x + calcHalfTextWidth(link.target.data)},${
+                    link.target.y - 15
+                  }`}
+                  fill={"white"}
+                  stroke={"black"}
+                  strokeWidth={1}
+                />
+              ) : (
+                <LinkVerticalLine
+                  key={i}
+                  data={link}
+                  stroke="black"
+                  strokeWidth="1"
+                  fill="none"
+                  // control the y-axis of edge line
+                  y={(node: any) => node.y + lineOffset}
+                  // control the open angle of edge
+                  // by controlling the y-axis of end point of edge
+                  target={({ target }) => ({
+                    ...target,
+                    y: target.y - angle
+                  })}
+                />
+              )
+            )}
           </Group>
         )}
       </Tree>

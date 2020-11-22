@@ -4,7 +4,7 @@ export interface TreeNode {
   name: string;
   children: TreeNode[];
   id?: number;
-  // triangleChild: boolean
+  triangleChild?: boolean;
 }
 
 export interface StateType {
@@ -25,7 +25,8 @@ export enum actions {
   RESET_BASIC,
   RESET_DP,
   UNDO,
-  REDO
+  REDO,
+  MAKE_TRIANGLE
 }
 
 export type ActionType =
@@ -38,4 +39,5 @@ export type ActionType =
   | { type: actions.UNDO }
   | { type: actions.REDO }
   | { type: actions.NEW_CHILD; node: HierarchyPointNode<TreeNode> }
-  | { type: actions.REMOVE_SUBTREE; node: HierarchyPointNode<TreeNode> };
+  | { type: actions.REMOVE_SUBTREE; node: HierarchyPointNode<TreeNode> }
+  | { type: actions.MAKE_TRIANGLE; node: HierarchyPointNode<TreeNode> };

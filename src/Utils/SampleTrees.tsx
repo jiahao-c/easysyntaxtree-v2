@@ -1,6 +1,6 @@
 import { Node } from "./Node";
 import { TreeNode } from "../Types/TreeTypes";
-import { genID } from "./traverse";
+import { initTree } from "./traverse";
 import produce from "immer";
 import * as data from "./sampleDPTree.json";
 export const sampleTree: TreeNode = Node(
@@ -26,16 +26,10 @@ export const sampleTree: TreeNode = Node(
 
 export const sampleTree2: TreeNode = data;
 
-export const sampleTreeWithID = produce(sampleTree, (draft) => {
-  genID(draft);
-});
+export const sampleTreeWithID = initTree(sampleTree);
 
-export const sampleTree2WithID = produce(sampleTree2, (draft) => {
-  genID(draft);
-});
+export const sampleTree2WithID = initTree(sampleTree2);
 
 export const blankTree: TreeNode = Node("TP");
 
-export const blankTreeWithID = produce(blankTree, (draft) => {
-  genID(draft);
-});
+export const blankTreeWithID = initTree(blankTree);
