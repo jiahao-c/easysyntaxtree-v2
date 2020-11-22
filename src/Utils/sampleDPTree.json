@@ -7,48 +7,21 @@
         {
           "name": "D'",
           "children": [
-            {
-              "name": "D",
-              "children": [],
-              "id": 3
-            },
+            { "name": "D", "children": [] },
             {
               "name": "NP",
               "children": [
-                {
-                  "name": "N",
-                  "children": [
-                    {
-                      "name": "We",
-                      "children": [],
-                      "id": 6
-                    }
-                  ],
-                  "id": 5
-                }
-              ],
-              "id": 4
+                { "name": "N", "children": [{ "name": "We", "children": [] }] }
+              ]
             }
-          ],
-          "id": 2
+          ]
         }
-      ],
-      "id": 1
+      ]
     },
     {
       "name": "T'",
       "children": [
-        {
-          "name": "T",
-          "children": [
-            {
-              "name": "should",
-              "children": [],
-              "id": 9
-            }
-          ],
-          "id": 8
-        },
+        { "name": "T", "children": [{ "name": "should", "children": [] }] },
         {
           "name": "VP",
           "children": [
@@ -63,20 +36,11 @@
                       "children": [
                         {
                           "name": "V",
-                          "children": [
-                            {
-                              "name": "worry",
-                              "children": [],
-                              "id": 15
-                            }
-                          ],
-                          "id": 14
+                          "children": [{ "name": "worry", "children": [] }]
                         }
-                      ],
-                      "id": 13
+                      ]
                     }
-                  ],
-                  "id": 12
+                  ]
                 },
                 {
                   "name": "PP",
@@ -86,14 +50,7 @@
                       "children": [
                         {
                           "name": "P",
-                          "children": [
-                            {
-                              "name": "about",
-                              "children": [],
-                              "id": 19
-                            }
-                          ],
-                          "id": 18
+                          "children": [{ "name": "about", "children": [] }]
                         },
                         {
                           "name": "CP",
@@ -101,13 +58,8 @@
                             {
                               "name": "C",
                               "children": [
-                                {
-                                  "name": "whether",
-                                  "children": [],
-                                  "id": 22
-                                }
-                              ],
-                              "id": 21
+                                { "name": "whether", "children": [] }
+                              ]
                             },
                             {
                               "name": "TP",
@@ -118,11 +70,7 @@
                                     {
                                       "name": "D'",
                                       "children": [
-                                        {
-                                          "name": "D",
-                                          "children": [],
-                                          "id": 26
-                                        },
+                                        { "name": "D", "children": [] },
                                         {
                                           "name": "NP",
                                           "children": [
@@ -134,23 +82,17 @@
                                                   "children": [
                                                     {
                                                       "name": "we",
-                                                      "children": [],
-                                                      "id": 30
+                                                      "children": []
                                                     }
-                                                  ],
-                                                  "id": 29
+                                                  ]
                                                 }
-                                              ],
-                                              "id": 28
+                                              ]
                                             }
-                                          ],
-                                          "id": 27
+                                          ]
                                         }
-                                      ],
-                                      "id": 25
+                                      ]
                                     }
-                                  ],
-                                  "id": 24
+                                  ]
                                 },
                                 {
                                   "name": "T'",
@@ -158,13 +100,8 @@
                                     {
                                       "name": "T",
                                       "children": [
-                                        {
-                                          "name": "will",
-                                          "children": [],
-                                          "id": 33
-                                        }
-                                      ],
-                                      "id": 32
+                                        { "name": "will", "children": [] }
+                                      ]
                                     },
                                     {
                                       "name": "VP",
@@ -177,81 +114,35 @@
                                               "children": [
                                                 {
                                                   "name": "see",
-                                                  "children": [],
-                                                  "id": 37
+                                                  "children": []
                                                 }
-                                              ],
-                                              "id": 36
+                                              ]
                                             },
                                             {
                                               "name": "DP",
+                                              "triangleChild": true,
                                               "children": [
                                                 {
-                                                  "name": "D'",
-                                                  "children": [
-                                                    {
-                                                      "name": "D",
-                                                      "children": [
-                                                        {
-                                                          "name": "a",
-                                                          "children": [],
-                                                          "id": 41
-                                                        }
-                                                      ],
-                                                      "id": 40
-                                                    },
-                                                    {
-                                                      "name": "NP",
-                                                      "children": [
-                                                        {
-                                                          "name": "N'",
-                                                          "children": [
-                                                            {
-                                                              "name": "N",
-                                                              "children": [
-                                                                {
-                                                                  "name": "movie",
-                                                                  "children": [],
-                                                                  "id": 45
-                                                                }
-                                                              ],
-                                                              "id": 44
-                                                            }
-                                                          ],
-                                                          "id": 43
-                                                        }
-                                                      ],
-                                                      "id": 42
-                                                    }
-                                                  ],
-                                                  "id": 39
+                                                  "name": "a movie",
+                                                  "children": []
                                                 }
-                                              ],
-                                              "id": 38
+                                              ]
                                             }
-                                          ],
-                                          "id": 35
+                                          ]
                                         }
-                                      ],
-                                      "id": 34
+                                      ]
                                     }
-                                  ],
-                                  "id": 31
+                                  ]
                                 }
-                              ],
-                              "id": 23
+                              ]
                             }
-                          ],
-                          "id": 20
+                          ]
                         }
-                      ],
-                      "id": 17
+                      ]
                     }
-                  ],
-                  "id": 16
+                  ]
                 }
-              ],
-              "id": 11
+              ]
             },
             {
               "name": "PP",
@@ -261,14 +152,7 @@
                   "children": [
                     {
                       "name": "P",
-                      "children": [
-                        {
-                          "name": "in",
-                          "children": [],
-                          "id": 49
-                        }
-                      ],
-                      "id": 48
+                      "children": [{ "name": "in", "children": [] }]
                     },
                     {
                       "name": "DP",
@@ -278,14 +162,7 @@
                           "children": [
                             {
                               "name": "D",
-                              "children": [
-                                {
-                                  "name": "the",
-                                  "children": [],
-                                  "id": 53
-                                }
-                              ],
-                              "id": 52
+                              "children": [{ "name": "the", "children": [] }]
                             },
                             {
                               "name": "NP",
@@ -296,38 +173,24 @@
                                     {
                                       "name": "N",
                                       "children": [
-                                        {
-                                          "name": "evening",
-                                          "children": [],
-                                          "id": 57
-                                        }
-                                      ],
-                                      "id": 56
+                                        { "name": "evening", "children": [] }
+                                      ]
                                     }
-                                  ],
-                                  "id": 55
+                                  ]
                                 }
-                              ],
-                              "id": 54
+                              ]
                             }
-                          ],
-                          "id": 51
+                          ]
                         }
-                      ],
-                      "id": 50
+                      ]
                     }
-                  ],
-                  "id": 47
+                  ]
                 }
-              ],
-              "id": 46
+              ]
             }
-          ],
-          "id": 10
+          ]
         }
-      ],
-      "id": 7
+      ]
     }
-  ],
-  "id": 0
+  ]
 }

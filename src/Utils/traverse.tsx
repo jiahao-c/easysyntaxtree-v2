@@ -15,21 +15,6 @@ export function genID(tree: TreeNode) {
   return produce(tree, (draft) => genID_Mutable(draft));
 }
 
-//assign triangleChild properties, also gens id.
-function initTree_Mutable(tree: TreeNode) {
-  let id = 0;
-  function traverse(node: TreeNode) {
-    node.triangleChild = false;
-    node.id = id++;
-    node.children?.map((subtree) => traverse(subtree));
-  }
-  traverse(tree);
-}
-
-export function initTree(tree: TreeNode) {
-  return produce(tree, (draft) => initTree_Mutable(draft));
-}
-
 function removeID_Mutable(tree: TreeNode) {
   delete tree.id;
   function traverse(node: TreeNode) {
@@ -116,4 +101,21 @@ export function removeSubtree(tree: TreeNode, idToModify: number) {
 
 export function getHeight(tree: TreeNode) {
   return hierarchy(tree).height;
+}
+
+function makeTriangleChild_Mutable(tree: TreeNode, idToModify: number) {
+  function traverse(node: TreeNode) {
+    if (node.id === idToModify) {
+      node.triangleChild = true;
+      return;
+    }
+    for (let child of node.children) {
+      traverse(child);
+    }
+  }
+  traverse(tree);
+}
+
+export function makeTriangleChild(tree: TreeNode, idToModify: number) {
+  return produce(tree, (draft) => makeTriangleChild_Mutable(draft, idToModify));
 }

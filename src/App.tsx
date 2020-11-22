@@ -4,7 +4,7 @@ import { useState, useEffect, useReducer } from "react";
 import SyntaxTree from "./SyntaxTree";
 import ToolBar from "./ToolBar";
 import Sliders from "./Components/Sliders";
-import AlertDelete from "./Components/Alert";
+import AlertOperation, { AlertMode } from "./Components/Alert";
 import { TreeNode, StateType, ActionType, actions } from "./Types/TreeTypes";
 import {
   sampleTreeWithID,
@@ -12,15 +12,17 @@ import {
   sampleTree2WithID
 } from "./Utils/SampleTrees";
 import { calcWidth, calcHeight } from "./Utils/dimension";
-import { HierarchyPointNode } from "d3-hierarchy";
+import { HierarchyPointNode, tree } from "d3-hierarchy";
 import {
   renameNode,
   addNewChild,
   removeSubtree,
-  getHeight
+  getHeight,
+  makeTriangleChild
 } from "./Utils/traverse";
 import { Form } from "antd";
 import "antd/dist/antd.css";
+import { set } from "immer/dist/internal";
 
 function reducer(state: StateType, action: ActionType): StateType {
   switch (action.type) {
@@ -59,6 +61,13 @@ function reducer(state: StateType, action: ActionType): StateType {
         future: [],
         tree: addNewChild(state.tree, action.node.data.id!)
       };
+    case actions.MAKE_TRIANGLE:
+      return {
+        ...state,
+        past: [...state.past, state.tree],
+        future: [],
+        tree: makeTriangleChild(state.tree, action.node.data.id!)
+      };
     case actions.REMOVE_SUBTREE:
       return {
         ...state,
@@ -82,6 +91,7 @@ export default function App() {
   const [lineOffset, setLineOffset] = useState(6);
   const [form] = Form.useForm();
   const [isAlertVisible, setIsAlertVisible] = useState(false);
+  const [alertMode, setAlertMode] = useState(AlertMode.DELETE);
   const [state, dispatch] = useReducer(reducer, {
     tree: sampleTreeWithID,
     operatingNode: null,
@@ -99,8 +109,13 @@ export default function App() {
   }, [state.tree]);
 
   useEffect(() => {
-    window.addEventListener("keydown", (e) => setIsAlertVisible(e.ctrlKey));
-    window.addEventListener("keyup", (e) => setIsAlertVisible(e.ctrlKey));
+    window.addEventListener("keydown", (e) => {
+      setAlertMode(e.ctrlKey ? AlertMode.DELETE : AlertMode.TRIG);
+      setIsAlertVisible(e.ctrlKey || e.shiftKey);
+    });
+    window.addEventListener("keyup", (e) =>
+      setIsAlertVisible(e.ctrlKey && e.shiftKey)
+    );
   }, []);
 
   useEffect(() => {
@@ -144,7 +159,7 @@ export default function App() {
         `}
         onContextMenu={(e) => e.preventDefault()}
       >
-        <AlertDelete isVisible={isAlertVisible} />
+        <AlertOperation isVisible={isAlertVisible} mode={alertMode} />
         <SyntaxTree
           tree={state.tree}
           width={width}

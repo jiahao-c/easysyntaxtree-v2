@@ -66,6 +66,11 @@ export default function SyntaxTree({
                         ? "black"
                         : "black"
                     }
+                    onClick={(e) => {
+                      if (e.shiftKey) {
+                        dispatch({ type: actions.MAKE_TRIANGLE, node: node });
+                      }
+                    }}
                     onDoubleClick={(e) => {
                       dispatch({ type: actions.START_EDIT, node: node });
                     }}
@@ -87,17 +92,18 @@ export default function SyntaxTree({
             {/* render the edges */}
             {tree.links().map((link, i) => {
               //if the edge is a triangle
-              if (link.target.data.triangleChild) {
+              if (link.source.data.triangleChild) {
                 let halfTextWidth = calcHalfTextWidth(link.target.data.name);
                 return (
                   <Polygon
+                    key={i}
                     sides={3}
                     size={20}
                     points={`
                   ${link.source.x},
                   ${link.source.y + 8} 
-                  ${link.target.x - halfTextWidth},${link.target.y - 15} 
-                  ${link.target.x + halfTextWidth},${link.target.y - 15}`}
+                  ${link.target.x - halfTextWidth - 5},${link.target.y - 15} 
+                  ${link.target.x + halfTextWidth + 5},${link.target.y - 15}`}
                     fill={"white"}
                     stroke={"black"}
                     strokeWidth={1}

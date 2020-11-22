@@ -20,5 +20,11 @@ export const helpData: HelpCardProps[] = [
     text: "To edit a node, double click on it",
     src:
       "https://user-images.githubusercontent.com/8275280/99901078-f50c6180-2cee-11eb-963d-db820515b8d2.jpeg"
+  },
+  {
+    text:
+      "To make an edge to be an triangle, hold Shift and Left Click on a node",
+    src:
+      "https://user-images.githubusercontent.com/8275280/99901078-f50c6180-2cee-11eb-963d-db820515b8d2.jpeg"
   }
 ];
