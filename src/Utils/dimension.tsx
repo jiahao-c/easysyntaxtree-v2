@@ -28,10 +28,15 @@ export function calcHeight(treeHeight: number): number {
   return 45 * treeHeight + 150;
 }
 
-export function calcHalfTextWidth(node: HierarchyNode<TreeNode>): number {
-  return 20;
-  // let textElement: SVGGraphicsElement = document.getElementById(
-  //   id.toString()
-  // ) as any;
-  // return textElement.getBBox().width / 2;
+export function calcHalfTextWidth(name: string): number {
+  let dummyElement = document.createElement("span");
+  dummyElement.innerText = "Hello";
+  dummyElement.style.fontFamily = "Arial";
+  dummyElement.style.fontSize = "15px";
+  dummyElement.style.position = "absolute";
+  dummyElement.style.visibility = "hidden";
+  document.body.appendChild(dummyElement);
+  const width = dummyElement.clientWidth;
+  dummyElement.remove();
+  return width / 2;
 }

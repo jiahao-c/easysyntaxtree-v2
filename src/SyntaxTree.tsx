@@ -85,44 +85,45 @@ export default function SyntaxTree({
               );
             })}
             {/* render the edges */}
-            {tree.links().map((link, i) =>
-              link.target.data.triangleChild! ? (
-                //draw a triangle here using visx shape
-                <Polygon
-                  sides={3}
-                  size={20}
-                  // rotate={90}
-                  points={`
+            {tree.links().map((link, i) => {
+              //if the edge is a triangle
+              if (link.target.data.triangleChild) {
+                let halfTextWidth = calcHalfTextWidth(link.target.data.name);
+                return (
+                  <Polygon
+                    sides={3}
+                    size={20}
+                    points={`
                   ${link.source.x},
                   ${link.source.y + 8} 
-                  ${link.target.x - calcHalfTextWidth(link.target.data)},${
-                    link.target.y - 15
-                  } 
-                  ${link.target.x + calcHalfTextWidth(link.target.data)},${
-                    link.target.y - 15
-                  }`}
-                  fill={"white"}
-                  stroke={"black"}
-                  strokeWidth={1}
-                />
-              ) : (
-                <LinkVerticalLine
-                  key={i}
-                  data={link}
-                  stroke="black"
-                  strokeWidth="1"
-                  fill="none"
-                  // control the y-axis of edge line
-                  y={(node: any) => node.y + lineOffset}
-                  // control the open angle of edge
-                  // by controlling the y-axis of end point of edge
-                  target={({ target }) => ({
-                    ...target,
-                    y: target.y - angle
-                  })}
-                />
-              )
-            )}
+                  ${link.target.x - halfTextWidth},${link.target.y - 15} 
+                  ${link.target.x + halfTextWidth},${link.target.y - 15}`}
+                    fill={"white"}
+                    stroke={"black"}
+                    strokeWidth={1}
+                  />
+                );
+              } else {
+                //if the edge is a line
+                return (
+                  <LinkVerticalLine
+                    key={i}
+                    data={link}
+                    stroke="black"
+                    strokeWidth="1"
+                    fill="none"
+                    // control the y-axis of edge line
+                    y={(node: any) => node.y + lineOffset}
+                    // control the open angle of edge
+                    // by controlling the y-axis of end point of edge
+                    target={({ target }) => ({
+                      ...target,
+                      y: target.y - angle
+                    })}
+                  />
+                );
+              }
+            })}
           </Group>
         )}
       </Tree>
