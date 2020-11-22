@@ -1,18 +1,17 @@
 /** @jsx jsx */
-import { css, jsx } from "@emotion/core";
+import { css, jsx } from "@emotion/react";
 import { useState, useEffect, useReducer } from "react";
 import SyntaxTree from "./SyntaxTree";
 import ToolBar from "./ToolBar";
 import Sliders from "./Components/Sliders";
 import AlertOperation, { AlertMode } from "./Components/Alert";
-import { TreeNode, StateType, ActionType, actions } from "./Types/TreeTypes";
+import { StateType, ActionType, actions } from "./Types/TreeTypes";
 import {
   sampleTreeWithID,
   blankTreeWithID,
   sampleTree2WithID
 } from "./Utils/SampleTrees";
 import { calcWidth, calcHeight } from "./Utils/dimension";
-import { HierarchyPointNode, tree } from "d3-hierarchy";
 import {
   renameNode,
   addNewChild,
@@ -22,7 +21,6 @@ import {
 } from "./Utils/traverse";
 import { Form } from "antd";
 import "antd/dist/antd.css";
-import { set } from "immer/dist/internal";
 
 function reducer(state: StateType, action: ActionType): StateType {
   switch (action.type) {

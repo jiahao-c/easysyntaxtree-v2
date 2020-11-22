@@ -1,26 +1,13 @@
 /** @jsx jsx */
-//import { Dispatch, SetStateAction } from "react";
-import { css, jsx } from "@emotion/core";
+import { css, jsx } from "@emotion/react";
 import styled from "@emotion/styled";
 import { useState } from "react";
+import { Button, Form, Input, Dropdown, Menu, Modal } from "antd";
 import {
-  Button,
-  Form,
-  Input,
-  Dropdown,
-  Menu,
-  Modal,
-  Card,
-  Col,
-  Row
-} from "antd";
-import {
-  DeleteOutlined,
   UndoOutlined,
   RedoOutlined,
   QuestionCircleOutlined
 } from "@ant-design/icons";
-//import { TreeNode } from "../Types/TreeTypes";
 import { actions, TreeNode } from "./Types/TreeTypes";
 import { removeID } from "./Utils/traverse";
 import { helpData } from "./Utils/helpData";

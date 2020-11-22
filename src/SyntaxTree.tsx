@@ -1,12 +1,11 @@
 /** @jsx jsx */
-import { jsx } from "@emotion/core";
-import { useMemo, useImperativeHandle, useRef, forwardRef } from "react";
+import { jsx } from "@emotion/react";
+import { useMemo } from "react";
 import { Group } from "@visx/group";
 import { hierarchy, Tree } from "@visx/hierarchy";
 import { LinkVerticalLine, Polygon } from "@visx/shape";
 import { TreeNode } from "./Types/TreeTypes";
-import { HierarchyPointNode } from "d3-hierarchy";
-import { ActionType, actions } from "./Types/TreeTypes";
+import { actions } from "./Types/TreeTypes";
 import { calcHalfTextWidth } from "./Utils/dimension";
 
 const margin = { top: 20, left: 30, right: 30, bottom: 70 };
