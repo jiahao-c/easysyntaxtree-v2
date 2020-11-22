@@ -3,7 +3,17 @@
 import { css, jsx } from "@emotion/core";
 import styled from "@emotion/styled";
 import { useState } from "react";
-import { Button, Form, Input, Dropdown, Menu, Modal } from "antd";
+import {
+  Button,
+  Form,
+  Input,
+  Dropdown,
+  Menu,
+  Modal,
+  Card,
+  Col,
+  Row
+} from "antd";
 import {
   DeleteOutlined,
   UndoOutlined,
@@ -13,8 +23,10 @@ import {
 //import { TreeNode } from "../Types/TreeTypes";
 import { actions, TreeNode } from "./Types/TreeTypes";
 import { removeID } from "./Utils/traverse";
+import { helpData } from "./Utils/helpData";
 import downloadSvg, { downloadPng } from "svg-crowbar";
 import "antd/dist/antd.css";
+import HelpCard from "./Components/HelpCard";
 
 interface ToolBarProps {
   isInputAvailable: boolean;
@@ -101,33 +113,11 @@ export default function ToolBar({
             OK
           </Button>
         ]}
+        width={700} //todo: adjust width to display two cards in a row
       >
-        <p>To start, select a template</p>
-        <img
-          style={{ width: "200px", height: "200px" }}
-          src="https://user-images.githubusercontent.com/8275280/99901077-f3429e00-2cee-11eb-99b0-671e6c5ee674.jpeg"
-          alt="template"
-        />
-        <p>To add a child, Right Click on a node</p>
-        <img
-          style={{ width: "200px", height: "200px" }}
-          src="https://user-images.githubusercontent.com/8275280/99901079-f63d8e80-2cee-11eb-8bc1-82ad1c7dab09.jpeg"
-          alt="right-click"
-        />
-        <p>
-          To remove a subtree, hold <kbd>Control</kbd> and Left Click on a node{" "}
-        </p>
-        <img
-          style={{ width: "200px", height: "200px" }}
-          src="https://user-images.githubusercontent.com/8275280/99901077-f3429e00-2cee-11eb-99b0-671e6c5ee674.jpeg"
-          alt="ctrl-left-click"
-        />
-        <p>To edit a node, double click on it</p>
-        <img
-          style={{ width: "200px", height: "200px" }}
-          src="https://user-images.githubusercontent.com/8275280/99901078-f50c6180-2cee-11eb-963d-db820515b8d2.jpeg"
-          alt="double-click"
-        />
+        {helpData.map((help) => (
+          <HelpCard text={help.text} src={help.src} />
+        ))}
       </Modal>
       <ButtonStyled
         icon={<QuestionCircleOutlined />}
