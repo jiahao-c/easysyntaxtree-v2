@@ -16,7 +16,7 @@ export default function AlertOperation(props: AlertProps) {
     visibility: props.isVisible ? "visible" : "hidden",
     display: "flex",
     justifyContent: "center"
-  };
+  } as React.CSSProperties;
 
   return (
     <div>
