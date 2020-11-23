@@ -120,7 +120,7 @@ export default function App() {
     } else {
       form.resetFields();
     }
-  }, [state.operatingNode]);
+  }, [state.operatingNode, form]);
 
   return (
     <div

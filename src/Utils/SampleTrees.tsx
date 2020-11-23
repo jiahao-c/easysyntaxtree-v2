@@ -1,7 +1,6 @@
 import { Node } from "./Node";
 import { TreeNode } from "../Types/TreeTypes";
 import { genID } from "./traverse";
-import produce from "immer";
 import * as data from "./sampleDPTree.json";
 export const sampleTree: TreeNode = Node(
   "TP",
