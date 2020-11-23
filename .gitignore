@@ -5,3 +5,5 @@ yarn.lock
 *.d.ts
 build
 .eslintcache
+.firebaserc
+.firebase
