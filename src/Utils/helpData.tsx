@@ -4,7 +4,7 @@ export const helpData: HelpCardProps[] = [
   {
     text: "To start, select a template",
     src:
-      "https://user-images.githubusercontent.com/8275280/99901077-f3429e00-2cee-11eb-99b0-671e6c5ee674.jpeg"
+      "https://user-images.githubusercontent.com/8275280/99901081-f6d62500-2cee-11eb-9a00-030e3daec638.jpeg"
   },
   {
     text: "To add a child, Right Click on a node",
@@ -25,6 +25,6 @@ export const helpData: HelpCardProps[] = [
     text:
       "To make an edge to be an triangle, hold Shift and Left Click on a node",
     src:
-      "https://user-images.githubusercontent.com/8275280/99901078-f50c6180-2cee-11eb-963d-db820515b8d2.jpeg"
+      "https://user-images.githubusercontent.com/8275280/99953639-839ae480-2dbc-11eb-9d55-957545e6b4a3.jpeg"
   }
 ];

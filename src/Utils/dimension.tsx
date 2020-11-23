@@ -1,5 +1,3 @@
-import { HierarchyNode } from "d3-hierarchy";
-import { TreeNode } from "./Types/TreeTypes";
 export function calcWidth(treeHeight: number) {
   //values are manually tuned from experiment
   switch (treeHeight) {

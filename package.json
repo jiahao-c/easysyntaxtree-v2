@@ -4,6 +4,9 @@
   "description": "Easy Syntax Tree Version2",
   "keywords": [],
   "main": "src/index.tsx",
+  "include": [
+    "src", "src/Types/*"
+  ],
   "dependencies": {
     "@ant-design/icons": "4.3.0",
     "@visx/drag": "1.0.0",
