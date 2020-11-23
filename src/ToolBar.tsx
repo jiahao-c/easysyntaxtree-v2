@@ -1,7 +1,4 @@
-/** @jsx jsx */
-import { css, jsx } from "@emotion/react";
-import styled from "@emotion/styled";
-import { useState } from "react";
+import React,{ useState } from "react";
 import { Button, Form, Input, Dropdown, Menu, Modal } from "antd";
 import {
   UndoOutlined,
@@ -12,8 +9,9 @@ import { actions, TreeNode } from "./Types/TreeTypes";
 import { removeID } from "./Utils/traverse";
 import { helpData } from "./Utils/helpData";
 import downloadSvg, { downloadPng } from "svg-crowbar";
-import "antd/dist/antd.css";
 import HelpCard from "./Components/HelpCard";
+import "./Styles/Toolbar.css";
+import "antd/dist/antd.css";
 
 interface ToolBarProps {
   isInputAvailable: boolean;
@@ -23,10 +21,6 @@ interface ToolBarProps {
   canRedo: boolean;
   tree: TreeNode;
 }
-
-const ButtonStyled = styled(Button)`
-  margin: 5px;
-`;
 
 export default function ToolBar({
   isInputAvailable,
@@ -86,9 +80,7 @@ export default function ToolBar({
 
   return (
     <div
-      css={css`
-        text-align: center;
-      `}
+      className="ToolBar"
     >
       <Modal
         title="How To Use Easy Syntax Tree"
@@ -106,40 +98,36 @@ export default function ToolBar({
           <HelpCard text={help.text} src={help.src} />
         ))}
       </Modal>
-      <ButtonStyled
+      <Button
         icon={<QuestionCircleOutlined />}
         onClick={() => setIsHelpVisible(true)}
       >
         How-to
-      </ButtonStyled>
+      </Button>
       <Dropdown overlay={TemplateMenu} placement="bottomCenter">
-        <ButtonStyled type="primary">Templates</ButtonStyled>
+        <Button type="primary">Templates</Button>
       </Dropdown>
-      <ButtonStyled
+      <Button
         onClick={() => dispatch({ type: actions.UNDO })}
         disabled={!canUndo}
         type="primary"
         icon={<UndoOutlined />}
       >
         Undo
-      </ButtonStyled>
-      <ButtonStyled
+      </Button>
+      <Button
         disabled={!canRedo}
         onClick={() => dispatch({ type: actions.REDO })}
         type="primary"
         icon={<RedoOutlined />}
       >
         Redo
-      </ButtonStyled>
-      {/* <ButtonStyled icon={<DeleteOutlined />} type="primary">
-        Remove Subtree
-      </ButtonStyled> */}
-      {/* <ButtonStyled type="primary">Draw Movement Trace</ButtonStyled> */}
+      </Button>
       <Dropdown overlay={ExportMenu} placement="bottomCenter">
-        <ButtonStyled type="primary">Export</ButtonStyled>
+        <Button type="primary">Export</Button>
       </Dropdown>
       <Dropdown overlay={ImportMenu} placement="bottomCenter">
-        <ButtonStyled type="primary">Import</ButtonStyled>
+        <Button type="primary">Import</Button>
       </Dropdown>
 
       <Form

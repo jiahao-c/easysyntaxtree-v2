@@ -1,6 +1,4 @@
-/** @jsx jsx */
-import { css, jsx } from "@emotion/react";
-import { useState, useEffect, useReducer } from "react";
+import React, { useState, useEffect, useReducer } from "react";
 import SyntaxTree from "./SyntaxTree";
 import ToolBar from "./ToolBar";
 import Sliders from "./Components/Sliders";
@@ -127,12 +125,12 @@ export default function App() {
   return (
     <div
       className="App"
-      css={css`
-        text-align: center;
-        background-color: rgba(0, 0, 0, 0.05);
-        padding: 15px;
-        min-height: 100vh;
-      `}
+      style={{
+        'textAlign':'center',
+        'backgroundColor':'rgba(0, 0, 0, 0.05)',
+        'padding':'15px',
+        'minHeight':'100vh'
+      }}
     >
       <Sliders
         currentWidth={width}
@@ -151,11 +149,12 @@ export default function App() {
         tree={state.tree}
       />
       <div
-        css={css`
-          text-align: center;
-          background-color: #fff;
-        `}
-        onContextMenu={(e) => e.preventDefault()}
+      onContextMenu={(e) => e.preventDefault()}
+      className="TreeSVG"
+      style={{
+        'backgroundColor': '#fff',
+        'textAlign':'center'
+      }}
       >
         <AlertOperation isVisible={isAlertVisible} mode={alertMode} />
         <SyntaxTree

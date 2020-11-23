@@ -1,6 +1,4 @@
-/** @jsx jsx */
-import { jsx } from "@emotion/react";
-import { useMemo } from "react";
+import React,{ useMemo } from "react";
 import { Group } from "@visx/group";
 import { hierarchy, Tree } from "@visx/hierarchy";
 import { LinkVerticalLine, Polygon } from "@visx/shape";
