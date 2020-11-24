@@ -56,12 +56,12 @@ export default function ToolBar({
       </Menu.Item>
     </Menu>
   );
-  const ImportMenu = (
-    <Menu>
-      <Menu.Item>JSON</Menu.Item>
-      <Menu.Item>[NP [N Brackets]]</Menu.Item>
-    </Menu>
-  );
+  // const ImportMenu = (
+  //   <Menu>
+  //     <Menu.Item>JSON</Menu.Item>
+  //     <Menu.Item>[NP [N Brackets]]</Menu.Item>
+  //   </Menu>
+  // );
   const TemplateMenu = (
     <Menu>
       <Menu.Item onClick={() => dispatch({ type: actions.RESET_BLANK })}>
