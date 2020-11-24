@@ -1,5 +1,5 @@
 import React,{ useState } from "react";
-import { Button, Form, Input, Dropdown, Menu, Modal } from "antd";
+import { Button, Form, Input, Dropdown, Menu, Modal,Row } from "antd";
 import {
   UndoOutlined,
   RedoOutlined,
@@ -94,9 +94,11 @@ export default function ToolBar({
         ]}
         width={700} //todo: adjust width to display two cards in a row
       >
+        <Row>
         {helpData.map((help) => (
           <HelpCard text={help.text} src={help.src} />
         ))}
+        </Row>
       </Modal>
       <Button
         icon={<QuestionCircleOutlined />}
