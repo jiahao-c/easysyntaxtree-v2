@@ -128,9 +128,9 @@ export default function ToolBar({
       <Dropdown overlay={ExportMenu} placement="bottomCenter">
         <Button type="primary">Export</Button>
       </Dropdown>
-      <Dropdown overlay={ImportMenu} placement="bottomCenter">
+      {/* <Dropdown overlay={ImportMenu} placement="bottomCenter">
         <Button type="primary">Import</Button>
-      </Dropdown>
+      </Dropdown> */}
 
       <Form
         form={form}
