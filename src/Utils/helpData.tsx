@@ -17,7 +17,7 @@ export const helpData: HelpCardProps[] = [
       "https://user-images.githubusercontent.com/8275280/99901077-f3429e00-2cee-11eb-99b0-671e6c5ee674.jpeg"
   },
   {
-    text: "To edit a node, double click on it",
+    text: "To edit a node, double click on it. Input the text in the textbar, and press Enter to submit.",
     src:
       "https://user-images.githubusercontent.com/8275280/99901078-f50c6180-2cee-11eb-963d-db820515b8d2.jpeg"
   },
