@@ -1,5 +1,4 @@
 import { HierarchyPointNode } from "d3-hierarchy";
-
 export interface TreeNode {
   name: string;
   children: TreeNode[];
@@ -26,7 +25,8 @@ export enum actions {
   RESET_DP,
   UNDO,
   REDO,
-  MAKE_TRIANGLE
+  MAKE_TRIANGLE,
+  DO_IMPORT
 }
 
 export type ActionType =
@@ -40,4 +40,5 @@ export type ActionType =
   | { type: actions.REDO }
   | { type: actions.NEW_CHILD; node: HierarchyPointNode<TreeNode> }
   | { type: actions.REMOVE_SUBTREE; node: HierarchyPointNode<TreeNode> }
-  | { type: actions.MAKE_TRIANGLE; node: HierarchyPointNode<TreeNode> };
+  | { type: actions.MAKE_TRIANGLE; node: HierarchyPointNode<TreeNode> }
+  | { type: actions.DO_IMPORT; newTree: TreeNode }

@@ -33,9 +33,6 @@ export default function ToolBar({
   const ExportMenu = (
     <Menu>
       <Menu.Item onClick={() => console.log(JSON.stringify(removeID(tree)))}>
-        JSON without ID
-      </Menu.Item>
-      <Menu.Item onClick={() => console.log(JSON.stringify(tree))}>
         JSON
       </Menu.Item>
       <Menu.Item
@@ -56,12 +53,14 @@ export default function ToolBar({
       </Menu.Item>
     </Menu>
   );
-  // const ImportMenu = (
-  //   <Menu>
-  //     <Menu.Item>JSON</Menu.Item>
-  //     <Menu.Item>[NP [N Brackets]]</Menu.Item>
-  //   </Menu>
-  // );
+  const ImportMenu = (
+    <Menu>
+      <Menu.Item onClick={() => {
+        setIsImportInputVisible(true);
+        }}>JSON</Menu.Item>
+      {/* <Menu.Item>[NP [N Brackets]]</Menu.Item> */}
+    </Menu>
+  );
   const TemplateMenu = (
     <Menu>
       <Menu.Item onClick={() => dispatch({ type: actions.RESET_BLANK })}>
@@ -77,11 +76,37 @@ export default function ToolBar({
   );
 
   const [isHelpVisible, setIsHelpVisible] = useState(false);
-
+  const [isImportInputVisible, setIsImportInputVisible] = useState(false);
   return (
     <div
       className="ToolBar"
     >
+      <Modal
+        title="Please paste the exported JSON"
+        visible={isImportInputVisible}
+        onOk={() => setIsImportInputVisible(false)}
+        onCancel={() => setIsImportInputVisible(false)}
+        footer={[
+          <Button key="back" onClick={() => setIsImportInputVisible(false)}>
+            OK
+          </Button>
+        ]}
+        width={1000} 
+      >
+       <Form
+        onFinish={(val: any) => {
+          let newTree:TreeNode = JSON.parse(val.JSONString);
+          dispatch({ type: actions.DO_IMPORT, newTree: newTree});
+        }}
+      >
+        <Form.Item name="JSONString">
+          <Input
+            addonBefore={"JSON:"}
+            addonAfter={"Press Enter to import"}
+          />
+        </Form.Item>
+      </Form>
+      </Modal>
       <Modal
         title="How To Use Easy Syntax Tree"
         visible={isHelpVisible}
@@ -92,11 +117,14 @@ export default function ToolBar({
             OK
           </Button>
         ]}
-        width={700} //todo: adjust width to display two cards in a row
+        width={700}
       >
         <Row>
         {helpData.map((help) => (
-          <HelpCard text={help.text} src={help.src} />
+          <HelpCard 
+          key={help.src}
+          text={help.text} 
+          src={help.src} />
         ))}
         </Row>
       </Modal>
@@ -128,9 +156,9 @@ export default function ToolBar({
       <Dropdown overlay={ExportMenu} placement="bottomCenter">
         <Button type="primary">Export</Button>
       </Dropdown>
-      {/* <Dropdown overlay={ImportMenu} placement="bottomCenter">
+      <Dropdown overlay={ImportMenu} placement="bottomCenter">
         <Button type="primary">Import</Button>
-      </Dropdown> */}
+      </Dropdown>
 
       <Form
         form={form}
@@ -142,7 +170,7 @@ export default function ToolBar({
         <Form.Item name="newText">
           <Input
             addonBefore={"Node Text:"}
-            //addonAfter={"Press Enter to make change"}
+            addonAfter={"Press Enter to make change"}
             disabled={!isInputAvailable}
           />
         </Form.Item>

@@ -5,7 +5,7 @@ import produce from "immer";
 export function genID_Mutable(tree: TreeNode) {
   let id = 0;
   function traverse(node: TreeNode) {
-    node.id = id++;
+    node["id"] = id++;
     node.children?.map((subtree) => traverse(subtree));
   }
   traverse(tree);

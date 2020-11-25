@@ -15,7 +15,8 @@ import {
   addNewChild,
   removeSubtree,
   getHeight,
-  makeTriangleChild
+  makeTriangleChild,
+  genID
 } from "./Utils/traverse";
 import { Form } from "antd";
 import "antd/dist/antd.css";
@@ -77,6 +78,8 @@ function reducer(state: StateType, action: ActionType): StateType {
       return { ...state, tree: sampleTreeWithID };
     case actions.RESET_DP:
       return { ...state, tree: sampleTree2WithID };
+    case actions.DO_IMPORT:
+      return {...state, tree: genID(action.newTree)}
     default:
       return state;
   }
