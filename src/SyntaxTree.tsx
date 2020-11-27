@@ -64,7 +64,7 @@ export default function SyntaxTree({
                         : "black"
                     }
                     onClick={(e) => {
-                      if (e.shiftKey) {
+                      if (e.altKey) {
                         dispatch({ type: actions.MAKE_TRIANGLE, node: node });
                       }
                     }}
@@ -75,7 +75,6 @@ export default function SyntaxTree({
                       e.preventDefault();
                       if (e.ctrlKey) {
                         dispatch({ type: actions.REMOVE_SUBTREE, node: node });
-                        //show an alert "DELETE MODE: hold shift and click on a node to remove the subtree"
                       } else {
                         dispatch({ type: actions.NEW_CHILD, node: node });
                       }

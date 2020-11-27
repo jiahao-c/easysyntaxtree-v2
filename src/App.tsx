@@ -110,10 +110,10 @@ export default function App() {
   useEffect(() => {
     window.addEventListener("keydown", (e) => {
       setAlertMode(e.ctrlKey ? AlertMode.DELETE : AlertMode.TRIG);
-      setIsAlertVisible(e.ctrlKey || e.shiftKey);
+      setIsAlertVisible(e.ctrlKey || e.altKey);
     });
     window.addEventListener("keyup", (e) =>
-      setIsAlertVisible(e.ctrlKey && e.shiftKey)
+      setIsAlertVisible(e.ctrlKey && e.altKey)
     );
   }, []);
 
