@@ -3,7 +3,7 @@ import SyntaxTree from "./SyntaxTree";
 import ToolBar from "./ToolBar";
 import Sliders from "./Components/Sliders";
 import AlertOperation, { AlertMode } from "./Components/Alert";
-import { StateType, ActionType, actions } from "./Types/TreeTypes";
+import { StateType, ActionType, actions, TreeNode } from "./Types/TreeTypes";
 import {
   sampleTreeWithID,
   blankTreeWithID,
@@ -100,6 +100,7 @@ export default function App() {
   });
   const [width, setWidth] = useState(calcWidth(getHeight(state.tree)));
   const [height, setHeight] = useState(calcHeight(getHeight(state.tree)));
+  const [draggingItems, setDraggingItems] = useState<TreeNode[]>([]);
 
   useEffect(() => {
     let treeHeight = getHeight(state.tree);

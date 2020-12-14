@@ -6,3 +6,4 @@ build
 .eslintcache
 .firebaserc
 .firebase
+package-lock.json
