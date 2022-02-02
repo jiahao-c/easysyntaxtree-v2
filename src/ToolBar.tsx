@@ -11,7 +11,6 @@ import { helpData } from "./Utils/helpData";
 import downloadSvg, { downloadPng } from "svg-crowbar";
 import HelpCard from "./Components/HelpCard";
 import "./Styles/Toolbar.css";
-import "antd/dist/antd.css";
 
 interface ToolBarProps {
   isInputAvailable: boolean;

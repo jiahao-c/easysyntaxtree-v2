@@ -3,7 +3,7 @@ import SyntaxTree from "./SyntaxTree";
 import ToolBar from "./ToolBar";
 import Sliders from "./Components/Sliders";
 import AlertOperation, { AlertMode } from "./Components/Alert";
-import { StateType, ActionType, actions, TreeNode } from "./Types/TreeTypes";
+import { StateType, ActionType, actions } from "./Types/TreeTypes";
 import {
   sampleTreeWithID,
   blankTreeWithID,
@@ -19,7 +19,7 @@ import {
   genID
 } from "./Utils/traverse";
 import { Form } from "antd";
-import "antd/dist/antd.css";
+import "antd/dist/antd.min.css";
 
 function reducer(state: StateType, action: ActionType): StateType {
   switch (action.type) {
@@ -100,7 +100,7 @@ export default function App() {
   });
   const [width, setWidth] = useState(calcWidth(getHeight(state.tree)));
   const [height, setHeight] = useState(calcHeight(getHeight(state.tree)));
-  const [draggingItems, setDraggingItems] = useState<TreeNode[]>([]);
+
 
   useEffect(() => {
     let treeHeight = getHeight(state.tree);

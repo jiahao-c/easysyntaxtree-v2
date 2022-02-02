@@ -1,9 +1,8 @@
-import React,{ useMemo } from "react";
+import { useMemo } from "react";
 import { Group } from "@visx/group";
 import { hierarchy, Tree } from "@visx/hierarchy";
 import { LinkVerticalLine, Polygon } from "@visx/shape";
-import { TreeNode } from "./Types/TreeTypes";
-import { actions } from "./Types/TreeTypes";
+import { TreeNode,actions } from "./Types/TreeTypes";
 import { calcHalfTextWidth } from "./Utils/dimension";
 
 const margin = { top: 20, left: 30, right: 30, bottom: 70 };
@@ -80,7 +79,7 @@ export default function SyntaxTree({
                       }
                     }}
                   >
-                    {node.data.name}
+                    {node.data.name}<tspan baseline-shift = "sub" font-size = "10">2</tspan>
                   </text>
                 </Group>
               );
@@ -95,11 +94,11 @@ export default function SyntaxTree({
                     key={i}
                     sides={3}
                     size={20}
-                    points={`
-                  ${link.source.x},
-                  ${link.source.y + 8} 
-                  ${link.target.x - halfTextWidth - 5},${link.target.y - 15} 
-                  ${link.target.x + halfTextWidth + 5},${link.target.y - 15}`}
+                    points={
+                  [[link.source.x,link.source.y + 8],
+                  [link.target.x - halfTextWidth - 5,link.target.y - 15],
+                  [link.target.x + halfTextWidth + 5,link.target.y - 15]]
+                  }
                     fill={"white"}
                     stroke={"black"}
                     strokeWidth={1}
