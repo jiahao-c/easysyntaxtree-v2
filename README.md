@@ -1,7 +1,7 @@
 # easysyntaxtree-v2
 What is this: https://jiahao-c.medium.com/easy-syntax-tree-what-is-it-a773207dff8f
 
-Try it here: https://easysyntaxtree.web.app/
+Try it here: https://easysyntaxtree-v2.vercel.app/
 
 
 
