@@ -8,8 +8,7 @@ export interface TreeNode {
 
 export interface StateType {
   tree: TreeNode;
-  operatingNode: HierarchyPointNode<TreeNode> | null;
-  inputAvailable: boolean;
+  editingNodeId: number | null;
   past: TreeNode[];
   future: TreeNode[];
 }
@@ -20,6 +19,7 @@ export enum actions {
   REMOVE_SUBTREE,
   BG_CLICK,
   FINISH_EDIT,
+  CANCEL_EDIT,
   RESET_BLANK,
   RESET_BASIC,
   RESET_DP,
@@ -30,8 +30,9 @@ export enum actions {
 }
 
 export type ActionType =
-  | { type: actions.START_EDIT; node: HierarchyPointNode<TreeNode> }
-  | { type: actions.FINISH_EDIT; newText: string }
+  | { type: actions.START_EDIT; nodeId: number }
+  | { type: actions.FINISH_EDIT; nodeId: number; newText: string }
+  | { type: actions.CANCEL_EDIT }
   | { type: actions.BG_CLICK }
   | { type: actions.RESET_BLANK }
   | { type: actions.RESET_BASIC }

@@ -18,27 +18,24 @@ import {
   makeTriangleChild,
   genID
 } from "./Utils/traverse";
-import { Form } from "antd";
 import "antd/dist/antd.min.css";
 
 function reducer(state: StateType, action: ActionType): StateType {
   switch (action.type) {
     case actions.START_EDIT:
-      return { ...state, operatingNode: action.node, inputAvailable: true };
+      return { ...state, editingNodeId: action.nodeId };
     case actions.BG_CLICK:
-      return { ...state, operatingNode: null, inputAvailable: false };
+      return { ...state, editingNodeId: null };
     case actions.FINISH_EDIT:
       return {
         ...state,
         past: [...state.past, state.tree],
         future: [],
-        inputAvailable: false,
-        tree: renameNode(
-          state.tree,
-          state.operatingNode!.data.id!,
-          action.newText
-        )
+        editingNodeId: null,
+        tree: renameNode(state.tree, action.nodeId, action.newText)
       };
+    case actions.CANCEL_EDIT:
+      return { ...state, editingNodeId: null };
     case actions.UNDO:
       return {
         ...state,
@@ -73,13 +70,13 @@ function reducer(state: StateType, action: ActionType): StateType {
         tree: removeSubtree(state.tree, action.node.data.id!)
       };
     case actions.RESET_BLANK:
-      return { ...state, tree: blankTreeWithID };
+      return { ...state, tree: blankTreeWithID, editingNodeId: null };
     case actions.RESET_BASIC:
-      return { ...state, tree: sampleTreeWithID };
+      return { ...state, tree: sampleTreeWithID, editingNodeId: null };
     case actions.RESET_DP:
-      return { ...state, tree: sampleTree2WithID };
+      return { ...state, tree: sampleTree2WithID, editingNodeId: null };
     case actions.DO_IMPORT:
-      return {...state, tree: genID(action.newTree)}
+      return {...state, tree: genID(action.newTree), editingNodeId: null }
     default:
       return state;
   }
@@ -88,19 +85,16 @@ function reducer(state: StateType, action: ActionType): StateType {
 export default function App() {
   const [angle, setAngle] = useState(24);
   const [lineOffset, setLineOffset] = useState(6);
-  const [form] = Form.useForm();
   const [isAlertVisible, setIsAlertVisible] = useState(false);
   const [alertMode, setAlertMode] = useState(AlertMode.DELETE);
   const [state, dispatch] = useReducer(reducer, {
     tree: sampleTreeWithID,
-    operatingNode: null,
-    inputAvailable: false,
+    editingNodeId: null,
     past: [],
     future: []
   });
   const [width, setWidth] = useState(calcWidth(getHeight(state.tree)));
   const [height, setHeight] = useState(calcHeight(getHeight(state.tree)));
-
 
   useEffect(() => {
     let treeHeight = getHeight(state.tree);
@@ -117,14 +111,6 @@ export default function App() {
       setIsAlertVisible(e.ctrlKey && e.altKey)
     );
   }, []);
-
-  useEffect(() => {
-    if (state.operatingNode) {
-      form.setFieldsValue({ newText: state.operatingNode.data.name });
-    } else {
-      form.resetFields();
-    }
-  }, [state.operatingNode, form]);
 
   return (
     <div
@@ -145,9 +131,7 @@ export default function App() {
         setLineOffset={setLineOffset}
       />
       <ToolBar
-        isInputAvailable={state.inputAvailable}
         dispatch={dispatch}
-        form={form}
         canUndo={state.past.length > 0}
         canRedo={state.future.length > 0}
         tree={state.tree}
@@ -168,6 +152,7 @@ export default function App() {
           dispatch={dispatch}
           angle={angle}
           lineOffset={lineOffset}
+          editingNodeId={state.editingNodeId}
         />
       </div>
     </div>

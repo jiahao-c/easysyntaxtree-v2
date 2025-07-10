@@ -15,7 +15,7 @@ export default function Sliders(props: SliderProps) {
   return (
     <div>
       <Collapse>
-        <Panel header="Advanced Control" key="1">
+        <Panel header="Customize Width and Height" key="1">
           Width Control:
           <Slider
             defaultValue={props.currentWidth}

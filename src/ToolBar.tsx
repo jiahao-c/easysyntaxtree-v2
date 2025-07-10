@@ -13,18 +13,14 @@ import HelpCard from "./Components/HelpCard";
 import "./Styles/Toolbar.css";
 
 interface ToolBarProps {
-  isInputAvailable: boolean;
   dispatch: any;
-  form: any;
   canUndo: boolean;
   canRedo: boolean;
   tree: TreeNode;
 }
 
 export default function ToolBar({
-  isInputAvailable,
   dispatch,
-  form,
   canUndo,
   canRedo,
   tree
@@ -158,22 +154,6 @@ export default function ToolBar({
       <Dropdown overlay={ImportMenu} placement="bottomCenter">
         <Button type="primary">Import</Button>
       </Dropdown>
-
-      <Form
-        form={form}
-        onFinish={(val: any) => {
-          dispatch({ type: actions.FINISH_EDIT, newText: val.newText });
-          form.setFieldsValue({ newText: "" });
-        }}
-      >
-        <Form.Item name="newText">
-          <Input
-            addonBefore={"Node Text:"}
-            addonAfter={"Press Enter to make change"}
-            disabled={!isInputAvailable}
-          />
-        </Form.Item>
-      </Form>
     </div>
   );
 }
