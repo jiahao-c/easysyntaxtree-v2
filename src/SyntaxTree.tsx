@@ -18,7 +18,6 @@ interface TreeProps {
   editingNodeId: number | null;
 }
 
-// EditingInput component moved outside to prevent recreation
 const EditingInput = ({ 
   editingNodeId, 
   editText, 
