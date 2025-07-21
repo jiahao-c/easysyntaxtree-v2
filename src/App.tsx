@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useReducer } from "react";
+import { useState, useEffect, useReducer } from "react";
 import SyntaxTree from "./SyntaxTree";
 import ToolBar from "./ToolBar";
 import Sliders from "./Components/Sliders";
@@ -18,7 +18,7 @@ import {
   makeTriangleChild,
   genID
 } from "./Utils/traverse";
-import "antd/dist/antd.min.css";
+import "antd/dist/reset.css";
 
 function reducer(state: StateType, action: ActionType): StateType {
   switch (action.type) {

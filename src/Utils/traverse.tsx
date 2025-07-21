@@ -1,6 +1,6 @@
 import { TreeNode } from "../Types/TreeTypes";
 import { hierarchy } from "@visx/hierarchy";
-import produce from "immer";
+import { produce } from "immer";
 
 export function genID_Mutable(tree: TreeNode) {
   let id = 0;

@@ -1,5 +1,6 @@
-import React,{ useState } from "react";
-import { Button, Form, Input, Dropdown, Menu, Modal,Row } from "antd";
+import { useState } from "react";
+import { Button, Form, Input, Dropdown, Modal, Row } from "antd";
+import type { MenuProps } from 'antd';
 import {
   UndoOutlined,
   RedoOutlined,
@@ -25,50 +26,51 @@ export default function ToolBar({
   canRedo,
   tree
 }: ToolBarProps) {
-  const ExportMenu = (
-    <Menu>
-      <Menu.Item onClick={() => console.log(JSON.stringify(removeID(tree)))}>
-        JSON
-      </Menu.Item>
-      <Menu.Item
-        onClick={() =>
-          downloadSvg(document.querySelector("#treeSVG"), "EasySyntaxTree")
-        }
-      >
-        SVG
-      </Menu.Item>
-      <Menu.Item
-        onClick={() =>
-          downloadPng(document.querySelector("#treeSVG"), "EasySyntaxTree", {
-            css: "internal"
-          })
-        }
-      >
-        PNG
-      </Menu.Item>
-    </Menu>
-  );
-  const ImportMenu = (
-    <Menu>
-      <Menu.Item onClick={() => {
-        setIsImportInputVisible(true);
-        }}>JSON</Menu.Item>
-      {/* <Menu.Item>[NP [N Brackets]]</Menu.Item> */}
-    </Menu>
-  );
-  const TemplateMenu = (
-    <Menu>
-      <Menu.Item onClick={() => dispatch({ type: actions.RESET_BLANK })}>
-        Blank Tree
-      </Menu.Item>
-      <Menu.Item onClick={() => dispatch({ type: actions.RESET_BASIC })}>
-        Tree with TP
-      </Menu.Item>
-      <Menu.Item onClick={() => dispatch({ type: actions.RESET_DP })}>
-        Tree with DP
-      </Menu.Item>
-    </Menu>
-  );
+  const exportItems: MenuProps['items'] = [
+    {
+      key: 'json',
+      label: 'JSON',
+      onClick: () => console.log(JSON.stringify(removeID(tree)))
+    },
+    {
+      key: 'svg',
+      label: 'SVG',
+      onClick: () => downloadSvg(document.querySelector("#treeSVG"), "EasySyntaxTree")
+    },
+    {
+      key: 'png',
+      label: 'PNG',
+      onClick: () => downloadPng(document.querySelector("#treeSVG"), "EasySyntaxTree", {
+        css: "internal"
+      })
+    }
+  ];
+
+  const importItems: MenuProps['items'] = [
+    {
+      key: 'json',
+      label: 'JSON',
+      onClick: () => setIsImportInputVisible(true)
+    }
+  ];
+
+  const templateItems: MenuProps['items'] = [
+    {
+      key: 'blank',
+      label: 'Blank Tree',
+      onClick: () => dispatch({ type: actions.RESET_BLANK })
+    },
+    {
+      key: 'tp',
+      label: 'Tree with TP',
+      onClick: () => dispatch({ type: actions.RESET_BASIC })
+    },
+    {
+      key: 'dp',
+      label: 'Tree with DP',
+      onClick: () => dispatch({ type: actions.RESET_DP })
+    }
+  ];
 
   const [isHelpVisible, setIsHelpVisible] = useState(false);
   const [isImportInputVisible, setIsImportInputVisible] = useState(false);
@@ -78,7 +80,7 @@ export default function ToolBar({
     >
       <Modal
         title="Please paste the exported JSON"
-        visible={isImportInputVisible}
+        open={isImportInputVisible}
         onOk={() => setIsImportInputVisible(false)}
         onCancel={() => setIsImportInputVisible(false)}
         footer={[
@@ -104,7 +106,7 @@ export default function ToolBar({
       </Modal>
       <Modal
         title="How To Use Easy Syntax Tree"
-        visible={isHelpVisible}
+        open={isHelpVisible}
         onOk={() => setIsHelpVisible(false)}
         onCancel={() => setIsHelpVisible(false)}
         footer={[
@@ -129,7 +131,7 @@ export default function ToolBar({
       >
         How-to
       </Button>
-      <Dropdown overlay={TemplateMenu} placement="bottomCenter">
+      <Dropdown menu={{ items: templateItems }} placement="bottom">
         <Button type="primary">Templates</Button>
       </Dropdown>
       <Button
@@ -148,10 +150,10 @@ export default function ToolBar({
       >
         Redo
       </Button>
-      <Dropdown overlay={ExportMenu} placement="bottomCenter">
+      <Dropdown menu={{ items: exportItems }} placement="bottom">
         <Button type="primary">Export</Button>
       </Dropdown>
-      <Dropdown overlay={ImportMenu} placement="bottomCenter">
+      <Dropdown menu={{ items: importItems }} placement="bottom">
         <Button type="primary">Import</Button>
       </Dropdown>
     </div>

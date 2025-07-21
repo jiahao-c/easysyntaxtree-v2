@@ -1,4 +1,3 @@
-import React from "react";
 import { Card, Col } from "antd";
 
 export interface HelpCardProps {

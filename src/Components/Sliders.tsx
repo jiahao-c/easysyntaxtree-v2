@@ -1,6 +1,5 @@
 import React from "react";
 import { Slider, Collapse } from "antd";
-const { Panel } = Collapse;
 
 interface SliderProps {
   currentWidth: number;
@@ -14,24 +13,30 @@ interface SliderProps {
 export default function Sliders(props: SliderProps) {
   return (
     <div>
-      <Collapse>
-        <Panel header="Customize Width and Height" key="1">
-          Width Control:
-          <Slider
-            defaultValue={props.currentWidth}
-            min={100}
-            max={1000}
-            onAfterChange={props.setWidth}
-          />
-          Height Control:
-          <Slider
-            defaultValue={props.currentHeight}
-            min={100}
-            max={1000}
-            onAfterChange={props.setHeight}
-          />
-        </Panel>
-      </Collapse>
+      <Collapse
+        items={[{
+          key: '1',
+          label: 'Customize Width and Height',
+          children: (
+            <>
+              Width Control:
+              <Slider
+                defaultValue={props.currentWidth}
+                min={100}
+                max={1000}
+                onAfterChange={props.setWidth}
+              />
+              Height Control:
+              <Slider
+                defaultValue={props.currentHeight}
+                min={100}
+                max={1000}
+                onAfterChange={props.setHeight}
+              />
+            </>
+          )
+        }]}
+      />
       {/*Angle Control:
         <Slider
         defaultValue={24}
